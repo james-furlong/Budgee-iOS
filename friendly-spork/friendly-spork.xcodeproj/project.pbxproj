@@ -11,6 +11,7 @@
 		60412808298DF40800BE1143 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60412807298DF40800BE1143 /* ContentView.swift */; };
 		6041280A298DF40900BE1143 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60412809298DF40900BE1143 /* Assets.xcassets */; };
 		6041280E298DF40900BE1143 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6041280D298DF40900BE1143 /* Preview Assets.xcassets */; };
+		60412817298DFCA700BE1143 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60412816298DFCA700BE1143 /* DashboardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		60412809298DF40900BE1143 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6041280B298DF40900BE1143 /* friendly_spork.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = friendly_spork.entitlements; sourceTree = "<group>"; };
 		6041280D298DF40900BE1143 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		60412816298DFCA700BE1143 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,8 +75,17 @@
 		60412814298DF48800BE1143 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				60412815298DFC8D00BE1143 /* Dashboard */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		60412815298DFC8D00BE1143 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				60412816298DFCA700BE1143 /* DashboardView.swift */,
+			);
+			path = Dashboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60412808298DF40800BE1143 /* ContentView.swift in Sources */,
+				60412817298DFCA700BE1143 /* DashboardView.swift in Sources */,
 				60412806298DF40800BE1143 /* friendly_sporkApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
