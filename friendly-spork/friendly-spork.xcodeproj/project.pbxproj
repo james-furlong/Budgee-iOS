@@ -74,9 +74,9 @@
 		60412804298DF40800BE1143 /* friendly-spork */ = {
 			isa = PBXGroup;
 			children = (
-				60412855298FBB0500BE1143 /* Utils */,
-				60412849298FA13800BE1143 /* Data */,
 				60412814298DF48800BE1143 /* UI */,
+				60412849298FA13800BE1143 /* Data */,
+				60412855298FBB0500BE1143 /* Utils */,
 				60412805298DF40800BE1143 /* friendly_sporkApp.swift */,
 				60412807298DF40800BE1143 /* ContentView.swift */,
 				60412809298DF40900BE1143 /* Assets.xcassets */,
