@@ -1,5 +1,5 @@
 //
-//  DashboardView.swift
+//  BudgetView.swift
 //  friendly-spork
 //
 //  Created by James on 4/2/2023.
@@ -7,9 +7,8 @@
 
 import SwiftUI
 
-struct DashboardView: View {
+struct BudgetView: View {
     @State var name: String = "Test"
-    @State var budgetItems: [BudgetItem] = []
     
     var body: some View {
         ZStack {
@@ -40,15 +39,17 @@ struct DashboardView: View {
                 Spacer()
                 
                 VStack {
-                    Text("Test")
+                    Button("Add") {
+                        print("Add new spend item")
+                    }
                 }
             }
         }
     }
 }
 
-struct DashboardView_Previews: PreviewProvider {
+struct BudgetView_Previews: PreviewProvider {
     static var previews: some View {
-        DashboardView()
+        BudgetView()
     }
 }
