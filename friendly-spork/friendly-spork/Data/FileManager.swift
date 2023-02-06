@@ -39,10 +39,10 @@ class FileManagerWrapper {
         }
     }
     
-    func retrieveBudgets() throws -> [Budget] {
+    func retrieveBudgets() -> [Budget] {
         var budgetArray: [Budget] = []
         guard let documentUrl = retrieveDirectoryUrl() else {
-            throw Error.invalidDirectory
+            return []
         }
         
         let path = documentUrl.absoluteURL
@@ -51,11 +51,12 @@ class FileManagerWrapper {
             try directoryContents.forEach { fileUrl in
                 let fileData = try Data(contentsOf: fileUrl)
                 let budget = try JSONDecoder().decode(Budget.self, from: fileData)
+                budgetArray.append(budget)
             }
         }
         catch {
             print(error.localizedDescription)
-            throw Error.invalidDirectory
+            return []
         }
         
         return budgetArray

@@ -7,8 +7,14 @@
 
 import Foundation
 
-struct BudgetInterval: Codable {
+struct BudgetInterval: Codable, Hashable, Equatable {
     let startDateTime: Date
     let endDateTime: Date
     var items: [BudgetItem]
+    
+    static func == (lhs: BudgetInterval, rhs: BudgetInterval) -> Bool {
+        lhs.startDateTime == rhs.startDateTime &&
+        lhs.endDateTime == rhs.endDateTime &&
+        lhs.items == rhs.items
+    }
 }

@@ -7,8 +7,16 @@
 
 import Foundation
 
-enum Interval: Codable {
+enum Interval: Codable, Hashable, Equatable {
     case weekly
     case fortnightly
     case monthly
+    
+    var name: String {
+        switch self {
+            case .weekly: return "Weekly"
+            case .fortnightly: return "Fortnightly"
+            case .monthly: return "Monthly"
+        }
+    }
 }
