@@ -21,4 +21,29 @@ struct Budget: Codable, Hashable, Equatable {
         lhs.defaultItems == rhs.defaultItems &&
         lhs.intervals == rhs.intervals
     }
+    
+    var statusTitle: String {
+        if isUnderBudget {
+            return "Under budget"
+        }
+        
+        return "Over budget!"
+    }
+    
+    var isUnderBudget: Bool {
+        guard let interval = currentInterval else { return false }
+        for item in interval.items {
+            guard item.currentValue <= item.maximumValue else {
+                return false
+            }
+        }
+        
+        return true
+    }
+    
+    var currentInterval: BudgetInterval? {
+        intervals
+            .sorted(by: { $0.startDateTime > $1.startDateTime })
+            .first
+    }
 }

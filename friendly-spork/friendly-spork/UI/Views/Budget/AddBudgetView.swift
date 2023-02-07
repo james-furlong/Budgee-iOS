@@ -12,6 +12,8 @@ struct AddBudgetView: View {
     @State var name: String = ""
     @State var items: [BudgetItem] = [BudgetItem(name: "Test", maximumValue: 100, currentValue: 0)]
     @State var interval: Interval = .weekly
+    @State var startDate: Date = .now
+    
     @State var addItemViewIsShowing: Bool = false
     @State var errorIsShowing: Bool = false
     
@@ -22,50 +24,73 @@ struct AddBudgetView: View {
             Color("Background").ignoresSafeArea()
             VStack {
                 VStack(spacing: 10) {
-                    HStack {
-                        Text("Create budget")
-                            .font(.system(size: 35))
-                            .bold()
-                            .foregroundColor(Color("Text"))
-                            .padding(.leading, 20)
-                        
-                        Spacer()
-                    }
-                    
-                    TextField("Name", text: $name)
-                        .font(.system(size: 25))
-                        .underlineTextField()
-                        .padding(.leading, 20)
-                        .padding(.trailing, 20)
-                    
-                    Menu {
-                        Picker(selection: $interval) {
-                            ForEach(intervals, id: \.self) { interval in
-                                Text(interval.name)
-                                    .font(.system(size: 40))
-                                    .foregroundColor(Color("Text"))
-                            }
-                        } label: { }
-                    } label: {
+                    VStack {
                         HStack {
-                            Text("Select interval  -->")
-                                .font(.system(size: 20))
+                            Text("Create budget")
+                                .font(.system(size: 35))
+                                .bold()
                                 .foregroundColor(Color("Text"))
-                                .cornerRadius(20)
-                                .padding()
+                                .padding(.leading, 20)
                             
                             Spacer()
                             
-                            Text(interval.name)
-                                .font(.system(size: 20))
-                                .foregroundColor(Color("Text"))
-                                .padding()
+                            Button {
+                                completion()
+                            } label: {
+                                Image(systemName: "multiply")
+                                    .font(.system(size: 35))
+                                    .foregroundColor(Color("Green"))
+                            }
+                            .padding()
                         }
+                        
+                        TextField("Name", text: $name)
+                            .font(.system(size: 25))
+                            .underlineTextField()
+                            .padding(.leading, 20)
+                            .padding(.trailing, 20)
+                        
+                        Menu {
+                            Picker(selection: $interval) {
+                                ForEach(intervals, id: \.self) { interval in
+                                    Text(interval.name)
+                                        .font(.system(size: 40))
+                                        .foregroundColor(Color("Text"))
+                                }
+                            } label: { }
+                        } label: {
+                            HStack {
+                                Text("Select interval  -->")
+                                    .font(.system(size: 20))
+                                    .foregroundColor(Color("Text"))
+                                    .padding()
+                                
+                                Spacer()
+                                
+                                Text(interval.name)
+                                    .font(.system(size: 20))
+                                    .foregroundColor(Color("Text"))
+                                    .padding()
+                            }
+                        }
+                        .background(Color("Navy").opacity(0.2))
+                        .cornerRadius(20)
+                        .padding([.leading, .trailing], 30)
+                        
+                        DatePicker(selection: $startDate, in: Date.now..., displayedComponents: .date) {
+                            HStack {
+                                Text("Start date  -->")
+                                    .font(.system(size: 20))
+                                    .foregroundColor(Color("Text"))
+                                    .padding()
+                                
+                            }
+                        }
+                        .background(Color("Navy").opacity(0.2))
+                        .cornerRadius(20)
+                        .padding([.leading, .trailing], 30)
                     }
-                    .background(Color("Navy").opacity(0.2))
-                    .cornerRadius(20)
                     .padding(.bottom, 50)
-                    .padding([.leading, .trailing], 30)
                     
                     VStack {
                         ForEach(items, id: \.self) { item in
@@ -93,12 +118,18 @@ struct AddBudgetView: View {
                 
                 VStack {
                     Button {
+                        let initialInterval: BudgetInterval = BudgetInterval(
+                            startDateTime: startDate,
+                            endDateTime: interval.endDate(from: startDate),
+                            items: items
+                        )
+                        
                         let budget = Budget(
                             id: UUID().uuidString,
                             name: name,
                             intervalType: interval,
                             defaultItems: items,
-                            intervals: []
+                            intervals: [initialInterval]
                         )
                         
                         do {

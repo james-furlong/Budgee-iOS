@@ -8,8 +8,36 @@
 import SwiftUI
 
 struct BudgetDashboardView: View {
-    @State var budgets = Injector.fileManager.retrieveBudgets()
-    @State var name: String = "Test"
+    @State var budgets = [
+        Budget(
+            id: "TestID",
+            name: "Test Budget",
+            intervalType: .monthly,
+            defaultItems: [
+                BudgetItem(
+                    name: "Test Item",
+                    maximumValue: 100.00,
+                    currentValue: 0.0
+                )
+            ],
+            intervals: [
+                BudgetInterval(
+                    startDateTime: Date(),
+                    endDateTime: Calendar.current.date(byAdding: .month, value: 1, to: Date()) ?? Date(),
+                    items: [
+                        BudgetItem(
+                            name: "Test Item",
+                            maximumValue: 100.00,
+                            currentValue: 0.0
+                        )
+                    ]
+                )
+            ]
+        )
+    ]
+//    @State var budgets = Injector.fileManager.retrieveBudgets()
+    @State var currentBudget: Budget!
+    @State var budgetShowing: Bool = false
     @State var addBudgetShowing: Bool = false
     
     var body: some View {
@@ -27,7 +55,7 @@ struct BudgetDashboardView: View {
                         Spacer()
                         
                         Button {
-                            print("Add budget")
+                            addBudgetShowing = true
                         } label: {
                             Image(systemName: "plus.circle")
                                 .font(.system(size: 35))
@@ -36,17 +64,22 @@ struct BudgetDashboardView: View {
                         .padding()
                     }
                     
-                    List {
-                        ForEach(budgets, id: \.self) { budget in
-                            Text(budget.name)
-                        }
+                    ForEach(budgets, id: \.self) { budget in
+                        BudgetCellView(budget: budget)
+                            .gesture(
+                                TapGesture()
+                                    .onEnded {
+                                        currentBudget = budget
+                                        budgetShowing = true
+                                    }
+                            )
                     }
                 }
             }
             
             if budgets.isEmpty {
                 Button {
-                    print("Add initial budget")
+                    addBudgetShowing = true
                 } label: {
                     Text("Add initital budget")
                         .font(.system(size: 25))
@@ -60,7 +93,14 @@ struct BudgetDashboardView: View {
             
             if addBudgetShowing {
                 AddBudgetView {
-                    print("Add")
+                    addBudgetShowing = false
+                }
+                .transition(.slide)
+            }
+            
+            if budgetShowing {
+                BudgetView(budget: currentBudget) {
+                    budgetShowing = false
                 }
             }
         }

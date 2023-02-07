@@ -19,4 +19,12 @@ enum Interval: Codable, Hashable, Equatable {
             case .monthly: return "Monthly"
         }
     }
+    
+    func endDate(from startDate: Date) -> Date {
+        switch self {
+            case .weekly: return Calendar.current.date(byAdding: .weekOfYear, value: 1, to: startDate) ?? Date()
+            case .fortnightly: return Calendar.current.date(byAdding: .weekOfYear, value: 2, to: startDate) ?? Date()
+            case .monthly: return Calendar.current.date(byAdding: .month, value: 1, to: startDate) ?? Date()
+        }
+    }
 }

@@ -8,41 +8,62 @@
 import SwiftUI
 
 struct BudgetView: View {
-    @State var name: String = "Test"
+    @State var budget: Budget
+    let completion: () -> ()
     
     var body: some View {
         ZStack {
             Color("Background").ignoresSafeArea()
             VStack {
-                VStack(spacing: 0) {
-                    HStack {
-                        Text("Hey \(name)!")
+                HStack {
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text(budget.name)
                             .font(.system(size: 35))
                             .bold()
                             .foregroundColor(Color("Text"))
                             .padding(.leading, 20)
                         
-                        Spacer()
-                    }
-                    
-                    HStack {
-                        Text("You are currently under your budget")
+                        Text(budget.statusTitle)
                             .font(.system(size: 20))
                             .foregroundColor(Color("Text"))
                             .multilineTextAlignment(.leading)
                             .padding(.leading, 20)
-                        
-                        Spacer()
                     }
+                    
+                    Spacer()
+                    
+                    Button {
+                        completion()
+                    } label: {
+                        Image(systemName: "multiply")
+                            .font(.system(size: 35))
+                            .foregroundColor(Theme.Color.green)
+                    }
+                    .padding()
+                }
+                
+                ForEach(budget.currentInterval?.items ?? [], id: \.self) { item in
+                    BudgetItemCellView(item: item)
                 }
                 
                 Spacer()
+            }
+            
+            VStack {
+                Spacer()
                 
-                VStack {
-                    Button("Add") {
-                        print("Add new spend item")
-                    }
+                Button {
+                    print("")
+                } label: {
+                    Image(systemName: "plus")
+                        .font(.system(size: 25))
+                        .bold()
+                        .foregroundColor(Theme.Color.textSupp)
                 }
+                .padding([.leading, .trailing])
+                .padding()
+                .background(Theme.Color.green)
+                .clipShape(Capsule())
             }
         }
     }
@@ -50,6 +71,30 @@ struct BudgetView: View {
 
 struct BudgetView_Previews: PreviewProvider {
     static var previews: some View {
-        BudgetView()
+        BudgetView(budget: Budget(
+            id: "TestID",
+            name: "Test Budget",
+            intervalType: .monthly,
+            defaultItems: [
+                BudgetItem(
+                    name: "Test Item",
+                    maximumValue: 100.00,
+                    currentValue: 0.0
+                )
+            ],
+            intervals: [
+                BudgetInterval(
+                    startDateTime: Date(),
+                    endDateTime: Calendar.current.date(byAdding: .month, value: 1, to: Date()) ?? Date(),
+                    items: [
+                        BudgetItem(
+                            name: "Test Item",
+                            maximumValue: 100.00,
+                            currentValue: 30.0
+                        )
+                    ]
+                )
+            ]
+        )) { }
     }
 }
