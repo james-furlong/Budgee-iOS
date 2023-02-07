@@ -13,8 +13,6 @@
 		6041280E298DF40900BE1143 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6041280D298DF40900BE1143 /* Preview Assets.xcassets */; };
 		60412817298DFCA700BE1143 /* BudgetDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60412816298DFCA700BE1143 /* BudgetDashboardView.swift */; };
 		60412840298E26F700BE1143 /* BudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6041283F298E26F700BE1143 /* BudgetView.swift */; };
-		60412842298E27DA00BE1143 /* BudgetItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60412841298E27DA00BE1143 /* BudgetItemView.swift */; };
-		60412844298E27E700BE1143 /* SpendItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60412843298E27E700BE1143 /* SpendItemView.swift */; };
 		60412847298E29BA00BE1143 /* AddBudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60412846298E29BA00BE1143 /* AddBudgetView.swift */; };
 		6041284B298FA15300BE1143 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6041284A298FA15300BE1143 /* FileManager.swift */; };
 		6041284D298FA32F00BE1143 /* Budget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6041284C298FA32F00BE1143 /* Budget.swift */; };
@@ -39,8 +37,6 @@
 		6041280D298DF40900BE1143 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		60412816298DFCA700BE1143 /* BudgetDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetDashboardView.swift; sourceTree = "<group>"; };
 		6041283F298E26F700BE1143 /* BudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetView.swift; sourceTree = "<group>"; };
-		60412841298E27DA00BE1143 /* BudgetItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetItemView.swift; sourceTree = "<group>"; };
-		60412843298E27E700BE1143 /* SpendItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendItemView.swift; sourceTree = "<group>"; };
 		60412846298E29BA00BE1143 /* AddBudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetView.swift; sourceTree = "<group>"; };
 		6041284A298FA15300BE1143 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		6041284C298FA32F00BE1143 /* Budget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Budget.swift; sourceTree = "<group>"; };
@@ -185,7 +181,6 @@
 		6066A07B2992465E00640BE5 /* BudgetItem */ = {
 			isa = PBXGroup;
 			children = (
-				60412841298E27DA00BE1143 /* BudgetItemView.swift */,
 				6066A0792992462E00640BE5 /* BudgetItemCellView.swift */,
 			);
 			path = BudgetItem;
@@ -203,7 +198,6 @@
 		6066A07D2992469600640BE5 /* SpendItem */ = {
 			isa = PBXGroup;
 			children = (
-				60412843298E27E700BE1143 /* SpendItemView.swift */,
 			);
 			path = SpendItem;
 			sourceTree = "<group>";
@@ -278,7 +272,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60412842298E27DA00BE1143 /* BudgetItemView.swift in Sources */,
 				60412854298FA3EE00BE1143 /* Invterval.swift in Sources */,
 				6041284D298FA32F00BE1143 /* Budget.swift in Sources */,
 				60412851298FA3B300BE1143 /* BudgetItem.swift in Sources */,
@@ -293,7 +286,6 @@
 				6066A07A2992462E00640BE5 /* BudgetItemCellView.swift in Sources */,
 				6066A0812992487F00640BE5 /* Theme.swift in Sources */,
 				60412806298DF40800BE1143 /* friendly_sporkApp.swift in Sources */,
-				60412844298E27E700BE1143 /* SpendItemView.swift in Sources */,
 				60412859299052AA00BE1143 /* AddExpenseView.swift in Sources */,
 				60412840298E26F700BE1143 /* BudgetView.swift in Sources */,
 				60412847298E29BA00BE1143 /* AddBudgetView.swift in Sources */,
