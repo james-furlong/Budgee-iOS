@@ -41,8 +41,7 @@ struct AddExpenseView: View {
                 Button {
                     let item = BudgetItem(
                         name: name,
-                        maximumValue: maximumAmount,
-                        currentValue: 0
+                        maxValue: maximumAmount
                     )
                     name = ""
                     maximumAmount = 0

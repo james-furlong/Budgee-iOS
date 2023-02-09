@@ -16,8 +16,7 @@ struct BudgetDashboardView: View {
             defaultItems: [
                 BudgetItem(
                     name: "Test Item",
-                    maximumValue: 100.00,
-                    currentValue: 0.0
+                    maxValue: 100.00
                 )
             ],
             intervals: [
@@ -27,8 +26,7 @@ struct BudgetDashboardView: View {
                     items: [
                         BudgetItem(
                             name: "Test Item",
-                            maximumValue: 100.00,
-                            currentValue: 0.0
+                            maxValue: 100.00
                         )
                     ]
                 )

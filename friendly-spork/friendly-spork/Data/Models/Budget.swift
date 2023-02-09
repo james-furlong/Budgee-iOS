@@ -7,19 +7,21 @@
 
 import Foundation
 
-struct Budget: Codable, Hashable, Equatable {
+class Budget: Codable {
     let id: String
     let name: String
     let intervalType: Interval
     var defaultItems: [BudgetItem]
     var intervals: [BudgetInterval]
     
-    static func == (lhs: Budget, rhs: Budget) -> Bool {
-        lhs.id == rhs.id &&
-        lhs.name == rhs.name &&
-        lhs.intervalType == rhs.intervalType &&
-        lhs.defaultItems == rhs.defaultItems &&
-        lhs.intervals == rhs.intervals
+    // MARK: - Initialization
+    
+    init(id: String, name: String, intervalType: Interval, defaultItems: [BudgetItem], intervals: [BudgetInterval]) {
+        self.id = id
+        self.name = name
+        self.intervalType = intervalType
+        self.defaultItems = defaultItems
+        self.intervals = intervals
     }
     
     var statusTitle: String {
@@ -45,5 +47,21 @@ struct Budget: Codable, Hashable, Equatable {
         intervals
             .sorted(by: { $0.startDateTime > $1.startDateTime })
             .first
+    }
+}
+
+extension Budget: Hashable {
+    func hash(into hasher: inout Hasher) {
+        return hasher.combine(id)
+    }
+}
+
+extension Budget: Equatable {
+    static func == (lhs: Budget, rhs: Budget) -> Bool {
+        lhs.id == rhs.id &&
+        lhs.name == rhs.name &&
+        lhs.intervalType == rhs.intervalType &&
+        lhs.defaultItems == rhs.defaultItems &&
+        lhs.intervals == rhs.intervals
     }
 }

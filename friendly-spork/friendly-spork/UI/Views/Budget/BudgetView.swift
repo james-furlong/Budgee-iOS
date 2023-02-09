@@ -78,8 +78,7 @@ struct BudgetView_Previews: PreviewProvider {
             defaultItems: [
                 BudgetItem(
                     name: "Test Item",
-                    maximumValue: 100.00,
-                    currentValue: 0.0
+                    maxValue: 100.00
                 )
             ],
             intervals: [
@@ -89,8 +88,7 @@ struct BudgetView_Previews: PreviewProvider {
                     items: [
                         BudgetItem(
                             name: "Test Item",
-                            maximumValue: 100.00,
-                            currentValue: 30.0
+                            maxValue: 100.00
                         )
                     ]
                 )

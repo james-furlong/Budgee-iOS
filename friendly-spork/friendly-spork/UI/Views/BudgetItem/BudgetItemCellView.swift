@@ -36,8 +36,7 @@ struct BudgetItemCellView_Previews: PreviewProvider {
     static var previews: some View {
         BudgetItemCellView(item: BudgetItem(
             name: "Test Item",
-            maximumValue: 100.00,
-            currentValue: 20.0
+            maxValue: 100.00
         ))
     }
 }

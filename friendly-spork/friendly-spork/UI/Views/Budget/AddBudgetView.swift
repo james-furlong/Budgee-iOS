@@ -10,7 +10,7 @@ import SwiftUI
 struct AddBudgetView: View {
     let intervals: [Interval] = [.weekly, .fortnightly, .monthly]
     @State var name: String = ""
-    @State var items: [BudgetItem] = [BudgetItem(name: "Test", maximumValue: 100, currentValue: 0)]
+    @State var items: [BudgetItem] = [BudgetItem(name: "Test", maxValue: 100)]
     @State var interval: Interval = .weekly
     @State var startDate: Date = .now
     
