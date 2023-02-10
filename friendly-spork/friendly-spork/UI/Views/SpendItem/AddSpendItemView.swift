@@ -9,11 +9,10 @@ import SwiftUI
 
 struct AddSpendItemView: View {
     let budget: Budget
-    let completion: () -> ()
-    
     @State private var name: String? = nil
     @State private var amount: Double? = nil
     @State private var item: BudgetItem? = nil
+    let completion: () -> ()
     
     var body: some View {
         ZStack {

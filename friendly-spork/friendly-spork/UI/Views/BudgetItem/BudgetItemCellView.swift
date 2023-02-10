@@ -13,11 +13,26 @@ struct BudgetItemCellView: View {
     var body: some View {
         ZStack {
             VStack(alignment: .leading) {
-                Text(item.name)
-                    .font(.system(size: 25))
-                    .bold()
-                    .foregroundColor(Theme.Color.text)
-                    .padding([.leading, .top], 20)
+                HStack {
+                    Text(item.name)
+                        .font(.system(size: 25))
+                        .bold()
+                        .foregroundColor(Theme.Color.text)
+                        .padding([.leading, .top], 20)
+                    
+                    Spacer()
+                    
+                    VStack(alignment: .trailing) {
+                        Text(item.remainingAmount)
+                            .font(.system(size: 25))
+                            .bold()
+                            .foregroundColor(Theme.Color.text)
+                            
+                        Text("Remaining")
+                            .font(.system(size:15))
+                    }
+                    .padding([.trailing, .top], 20)
+                }
                 
                 ProgressView("", value: item.currentValue, total: item.maximumValue)
                     .font(.system(size: 20))

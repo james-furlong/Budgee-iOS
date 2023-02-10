@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BudgetView: View {
     @State var budget: Budget
+    @State var isShowingAddExpense: Bool = false
     let completion: () -> ()
     
     var body: some View {
@@ -53,7 +54,7 @@ struct BudgetView: View {
                 Spacer()
                 
                 Button {
-                    print("")
+                    isShowingAddExpense = true
                 } label: {
                     Image(systemName: "plus")
                         .font(.system(size: 25))
@@ -64,6 +65,18 @@ struct BudgetView: View {
                 .padding()
                 .background(Theme.Color.green)
                 .clipShape(Capsule())
+            }
+            
+            if isShowingAddExpense {
+                AddSpendItemView(budget: budget) {
+                    do {
+                        try Injector.fileManager.saveOrUpdateBudget(budget: budget)
+                    }
+                    catch {
+                        print("Unable to save expense")
+                    }
+                    isShowingAddExpense = false
+                }
             }
         }
     }

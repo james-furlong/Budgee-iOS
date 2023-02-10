@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class BudgetItem: Codable {
     let id: String
@@ -39,6 +40,24 @@ class BudgetItem: Codable {
     
     var isUnderBudget: Bool {
         return currentValue <= maximumValue
+    }
+    
+    var remainingAmount: String {
+        if isUnderBudget {
+            return "$\(String(format: "%.2f", maximumValue - currentValue ))"
+        }
+        return "-$\(String(format: "%.2f", currentValue - maximumValue))"
+    }
+    
+    var progressColor: Color {
+        if !isUnderBudget {
+            return Theme.Color.red
+        }
+        if (maximumValue - currentValue) >= (maximumValue * 0.90) {
+            return Theme.Color.sage
+        }
+        
+        return Theme.Color.green
     }
     
     // MARK: - Functions
