@@ -136,6 +136,7 @@ struct AddBudgetView: View {
                             try Injector.fileManager.saveOrUpdateBudget(budget: budget)
                         }
                         catch {
+                            Injector.log.error("Unable to save budget")
                             errorIsShowing = true
                             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                                 errorIsShowing = false

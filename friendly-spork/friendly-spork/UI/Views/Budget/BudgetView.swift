@@ -73,7 +73,7 @@ struct BudgetView: View {
                         try Injector.fileManager.saveOrUpdateBudget(budget: budget)
                     }
                     catch {
-                        print("Unable to save expense")
+                        Injector.log.error("Unable to save spend item")
                     }
                     isShowingAddExpense = false
                 }

@@ -11,4 +11,5 @@ enum Injector { }
 
 extension Injector {
     static var fileManager: FileManagerWrapper = FileManagerWrapper()
+    static var log: Logger = Logger()
 }

@@ -34,7 +34,7 @@ class FileManagerWrapper {
             try data.write(to: url)
         }
         catch {
-            print(error.localizedDescription)
+            Injector.log.error(error.localizedDescription)
             throw Error.writingFailed
         }
     }
@@ -55,7 +55,7 @@ class FileManagerWrapper {
             }
         }
         catch {
-            print(error.localizedDescription)
+            Injector.log.error(error.localizedDescription)
             return []
         }
         
@@ -74,7 +74,7 @@ class FileManagerWrapper {
                 try fileManager.createDirectory(atPath: dataPath.absoluteString, withIntermediateDirectories: true, attributes: nil)
             }
             catch {
-                print(error.localizedDescription)
+                Injector.log.error(error.localizedDescription)
                 return nil
             }
         }
