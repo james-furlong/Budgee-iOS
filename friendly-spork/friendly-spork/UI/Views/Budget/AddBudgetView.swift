@@ -10,9 +10,9 @@ import SwiftUI
 struct AddBudgetView: View {
     let intervals: [Interval] = [.weekly, .fortnightly, .monthly]
     @State var name: String = ""
-    @State var items: [BudgetItem] = [BudgetItem(name: "Test", maxValue: 100)]
-    @State var interval: Interval = .weekly
-    @State var startDate: Date = .now
+    @State var items: [BudgetItem] = [BudgetItem(name: "Test", maxValue: 100), BudgetItem(name: "Test", maxValue: 100)]
+    @State var interval: Interval?
+    @State var startDate: Date = Date()
     
     @State var addItemViewIsShowing: Bool = false
     @State var errorIsShowing: Bool = false
@@ -21,9 +21,9 @@ struct AddBudgetView: View {
     
     var body: some View {
         ZStack {
-            Theme.Color.background.ignoresSafeArea()
+            Theme.Color.sage.opacity(0.4).ignoresSafeArea()
             VStack {
-                VStack(spacing: 10) {
+                VStack {
                     VStack {
                         HStack {
                             Text("Create budget")
@@ -43,12 +43,18 @@ struct AddBudgetView: View {
                             }
                             .padding()
                         }
-                        
-                        TextField("Name", text: $name)
-                            .font(.system(size: 25))
-                            .underlineTextField()
-                            .padding(.leading, 20)
-                            .padding(.trailing, 20)
+                    }
+                     
+                    VStack(spacing: 15) {
+                        VStack {
+                            TextField("Name", text: $name)
+                                .font(.system(size: 20))
+                                .foregroundColor(Theme.Color.text)
+                                .padding()
+                        }
+                        .background()
+                        .cornerRadius(10)
+                        .padding([.leading, .trailing, .top], 20)
                         
                         Menu {
                             Picker(selection: $interval) {
@@ -60,86 +66,106 @@ struct AddBudgetView: View {
                             } label: { }
                         } label: {
                             HStack {
-                                Text("Select interval  -->")
+                                Text("Select interval")
                                     .font(.system(size: 20))
                                     .foregroundColor(Theme.Color.text)
                                     .padding()
                                 
                                 Spacer()
                                 
-                                Text(interval.name)
-                                    .font(.system(size: 20))
-                                    .foregroundColor(Theme.Color.text)
-                                    .padding()
+                                if let name = interval?.name {
+                                    Text(name)
+                                        .font(.system(size: 20))
+                                        .foregroundColor(Theme.Color.text)
+                                        .padding()
+                                }
+                                else {
+                                    Image(systemName: "chevron.down")
+                                        .font(.system(size: 20))
+                                        .foregroundColor(Theme.Color.text)
+                                        .padding()
+                                }
                             }
                         }
-                        .background(Theme.Color.navy).opacity(0.2))
-                        .cornerRadius(20)
-                        .padding([.leading, .trailing], 30)
+                        .background()
+                        .cornerRadius(10)
+                        .padding([.leading, .trailing], 20)
                         
                         DatePicker(selection: $startDate, in: Date.now..., displayedComponents: .date) {
                             HStack {
-                                Text("Start date  -->")
+                                Text("Start date")
                                     .font(.system(size: 20))
                                     .foregroundColor(Theme.Color.text)
                                     .padding()
-                                
                             }
                         }
-                        .background(Theme.Color.navy).opacity(0.2))
-                        .cornerRadius(20)
-                        .padding([.leading, .trailing], 30)
+                        .datePickerStyle(.compact)
+                        .accentColor(Theme.Color.navy)
+                        .background()
+                        .cornerRadius(10)
+                        .padding([.leading, .trailing, .bottom], 20)
                     }
-                    .padding(.bottom, 50)
+                    .background(Theme.Color.sage)
+                    .cornerRadius(10)
+                    .padding([.leading, .trailing])
                     
-                    VStack {
-                        ForEach(items, id: \.self) { item in
-                            ExpenseView(name: item.name, maximumAmount: item.maximumValue)
+                    VStack(spacing: 30) {
+                        VStack {
+                            ForEach(items, id: \.self) { item in
+                                ExpenseView(name: item.name, maximumAmount: item.maximumValue)
+                            }
                         }
+                        .padding(.top, 20)
+                        
+                        
+                        Button {
+                            addItemViewIsShowing = true
+                        } label: {
+                            Text("Add expense category")
+                                .frame(height: 25)
+                                .padding([.leading, .trailing], 40)
+                                .font(.system(size: 20))
+                                .bold()
+                                .foregroundColor(Theme.Color.textSupp)
+                        }
+                        .padding()
+                        .background(Theme.Color.green)
+                        .cornerRadius(30)
+                        .padding(.bottom, 20)
                     }
-                    .padding(.bottom, 30)
-
-                    
-                    Button {
-                        addItemViewIsShowing = true
-                    } label: {
-                        Text("Add expense category")
-                            .font(.system(size: 20))
-                            .bold()
-                            .foregroundColor(Theme.Color.textSupp)
-                    }
-                    .padding([.leading, .trailing], 40)
+                    .background(Theme.Color.sage)
+                    .cornerRadius(10)
                     .padding()
-                    .background(Theme.Color.green)
-                    .clipShape(Capsule())
                 }
                 
                 Spacer()
                 
                 VStack {
                     Button {
-                        let initialInterval: BudgetInterval = BudgetInterval(
-                            startDateTime: startDate,
-                            endDateTime: interval.endDate(from: startDate),
-                            items: items
-                        )
-                        
-                        let budget = Budget(
-                            id: UUID().uuidString,
-                            name: name,
-                            intervalType: interval,
-                            defaultItems: items,
-                            intervals: [initialInterval]
-                        )
-                        
-                        do {
-                            try Injector.fileManager.saveOrUpdateBudget(budget: budget)
-                        }
-                        catch {
-                            Injector.log.error("Unable to save budget")
-                            errorIsShowing = true
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                                errorIsShowing = false
+                        if let interval {
+                            let initialInterval: BudgetInterval = BudgetInterval(
+                                startDateTime: startDate,
+                                endDateTime: interval.endDate(from: startDate) ,
+                                items: items
+                            )
+                            
+                            let budget = Budget(
+                                id: UUID().uuidString,
+                                name: name,
+                                intervalType: interval,
+                                defaultItems: items,
+                                intervals: [initialInterval]
+                            )
+                            
+                            do {
+                                try Injector.fileManager.saveOrUpdateBudget(budget: budget)
+                            }
+                            catch {
+                                Injector.log.error("Unable to save budget")
+                                errorIsShowing = true
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                    errorIsShowing = false
+                                }
                             }
                         }
                     } label: {
