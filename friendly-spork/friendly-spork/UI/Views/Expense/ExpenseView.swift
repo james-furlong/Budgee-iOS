@@ -32,7 +32,7 @@ struct ExpenseView: View {
             }
             .padding(10)
         }
-        .background(Color("Blue"))
+        .background(Theme.Color.blue)
         .cornerRadius(20)
         .padding([.leading, .trailing])
     }

@@ -18,13 +18,13 @@ struct BudgetCellView: View {
                     Text(budget.name)
                         .font(.system(size: 20))
                         .bold()
-                        .foregroundColor(Color("TextSupp"))
+                        .foregroundColor(Theme.Color.textSupp)
                         .padding([.leading, .top], 20)
                     
                     
                     Text(budget.statusTitle)
                         .font(.system(size: 18))
-                        .foregroundColor(Color("TextSupp"))
+                        .foregroundColor(Theme.Color.textSupp)
                         .padding([.leading, .bottom], 20)
                 }
                 
@@ -32,7 +32,7 @@ struct BudgetCellView: View {
                 
                 Image(systemName: "chevron.forward")
                     .font(.system(size: 30))
-                    .foregroundColor(Color("TextSupp"))
+                    .foregroundColor(Theme.Color.textSupp)
                     .padding()
             }
             .background(budget.isUnderBudget ? backgroundColor : Theme.Color.red)

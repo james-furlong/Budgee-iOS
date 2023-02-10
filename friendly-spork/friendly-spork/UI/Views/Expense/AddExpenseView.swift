@@ -50,16 +50,16 @@ struct AddExpenseView: View {
                     Text("Add")
                         .font(.system(size: 16))
                         .bold()
-                        .foregroundColor(Color("Text"))
+                        .foregroundColor(Theme.Color.text)
                 }
                 .padding([.leading, .trailing], 40)
                 .padding([.top, .bottom])
-                .background(Color("Sage"))
+                .background(Theme.Color.sage)
                 .clipShape(Capsule())
             }
             .padding()
         }
-        .background(Color("BackgroundSupp"))
+        .background(Theme.Color.backgroundSupp)
         .cornerRadius(20)
         .padding()
         

@@ -40,14 +40,14 @@ struct BudgetDashboardView: View {
     
     var body: some View {
         ZStack {
-            Color("Background").ignoresSafeArea()
+            Theme.Color.background.ignoresSafeArea()
             VStack {
                 VStack(spacing: 0) {
                     HStack {
                         Text("Budgets")
                             .font(.system(size: 35))
                             .bold()
-                            .foregroundColor(Color("Text"))
+                            .foregroundColor(Theme.Color.text)
                             .padding(.leading, 20)
                         
                         Spacer()
@@ -57,7 +57,7 @@ struct BudgetDashboardView: View {
                         } label: {
                             Image(systemName: "plus.circle")
                                 .font(.system(size: 35))
-                                .foregroundColor(Color("Green"))
+                                .foregroundColor(Theme.Color.green)
                         }
                         .padding()
                     }
@@ -81,10 +81,10 @@ struct BudgetDashboardView: View {
                 } label: {
                     Text("Add initital budget")
                         .font(.system(size: 25))
-                        .foregroundColor(Color("TextSupp"))
+                        .foregroundColor(Theme.Color.textSupp)
                         .padding([.leading, .trailing], 30)
                         .padding()
-                        .background(Color("Green"))
+                        .background(Theme.Color.green)
                         .cornerRadius(20)
                 }
             }

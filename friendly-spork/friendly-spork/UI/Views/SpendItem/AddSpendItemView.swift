@@ -44,7 +44,7 @@ struct AddSpendItemView: View {
                             ForEach(budget.defaultItems, id: \.self) { item in
                                 Text(item.name)
                                     .font(.system(size: 40))
-                                    .foregroundColor(Color("Text"))
+                                    .foregroundColor(Theme.Color.text)
                                     .tag(item as BudgetItem)
                             }
                         } label: { }
@@ -52,7 +52,7 @@ struct AddSpendItemView: View {
                         HStack {
                             Text("Expense")
                                 .font(.system(size: 20))
-                                .foregroundColor(Color("Text"))
+                                .foregroundColor(Theme.Color.text)
                                 .padding()
                             
                             Spacer()
@@ -93,16 +93,16 @@ struct AddSpendItemView: View {
                     Text("Add")
                         .font(.system(size: 16))
                         .bold()
-                        .foregroundColor(Color("Text"))
+                        .foregroundColor(Theme.Color.text)
                 }
                 .padding([.leading, .trailing], 40)
                 .padding([.top, .bottom])
-                .background(Color("Sage"))
+                .background(Theme.Color.sage)
                 .clipShape(Capsule())
             }
             .padding(.bottom, 20)
         }
-        .background(Color("BackgroundSupp"))
+        .background(Theme.Color.backgroundSupp)
         .cornerRadius(20)
         .padding()
     }

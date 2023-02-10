@@ -13,7 +13,7 @@ extension View {
         self
             .padding(.vertical, 10)
             .overlay(Rectangle().frame(height: 2).padding(.top, 35))
-            .foregroundColor(Color("Text"))
+            .foregroundColor(Theme.Color.text)
             .padding(10)
     }
 }

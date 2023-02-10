@@ -14,19 +14,19 @@ struct BudgetView: View {
     
     var body: some View {
         ZStack {
-            Color("Background").ignoresSafeArea()
+            Theme.Color.background.ignoresSafeArea()
             VStack {
                 HStack {
                     VStack(alignment: .leading, spacing: 0) {
                         Text(budget.name)
                             .font(.system(size: 35))
                             .bold()
-                            .foregroundColor(Color("Text"))
+                            .foregroundColor(Theme.Color.text)
                             .padding(.leading, 20)
                         
                         Text(budget.statusTitle)
                             .font(.system(size: 20))
-                            .foregroundColor(Color("Text"))
+                            .foregroundColor(Theme.Color.text)
                             .multilineTextAlignment(.leading)
                             .padding(.leading, 20)
                     }

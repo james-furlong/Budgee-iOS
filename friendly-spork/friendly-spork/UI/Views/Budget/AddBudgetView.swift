@@ -21,7 +21,7 @@ struct AddBudgetView: View {
     
     var body: some View {
         ZStack {
-            Color("Background").ignoresSafeArea()
+            Theme.Color.background.ignoresSafeArea()
             VStack {
                 VStack(spacing: 10) {
                     VStack {
@@ -29,7 +29,7 @@ struct AddBudgetView: View {
                             Text("Create budget")
                                 .font(.system(size: 35))
                                 .bold()
-                                .foregroundColor(Color("Text"))
+                                .foregroundColor(Theme.Color.text)
                                 .padding(.leading, 20)
                             
                             Spacer()
@@ -39,7 +39,7 @@ struct AddBudgetView: View {
                             } label: {
                                 Image(systemName: "multiply")
                                     .font(.system(size: 35))
-                                    .foregroundColor(Color("Green"))
+                                    .foregroundColor(Theme.Color.green)
                             }
                             .padding()
                         }
@@ -55,25 +55,25 @@ struct AddBudgetView: View {
                                 ForEach(intervals, id: \.self) { interval in
                                     Text(interval.name)
                                         .font(.system(size: 40))
-                                        .foregroundColor(Color("Text"))
+                                        .foregroundColor(Theme.Color.text)
                                 }
                             } label: { }
                         } label: {
                             HStack {
                                 Text("Select interval  -->")
                                     .font(.system(size: 20))
-                                    .foregroundColor(Color("Text"))
+                                    .foregroundColor(Theme.Color.text)
                                     .padding()
                                 
                                 Spacer()
                                 
                                 Text(interval.name)
                                     .font(.system(size: 20))
-                                    .foregroundColor(Color("Text"))
+                                    .foregroundColor(Theme.Color.text)
                                     .padding()
                             }
                         }
-                        .background(Color("Navy").opacity(0.2))
+                        .background(Theme.Color.navy).opacity(0.2))
                         .cornerRadius(20)
                         .padding([.leading, .trailing], 30)
                         
@@ -81,12 +81,12 @@ struct AddBudgetView: View {
                             HStack {
                                 Text("Start date  -->")
                                     .font(.system(size: 20))
-                                    .foregroundColor(Color("Text"))
+                                    .foregroundColor(Theme.Color.text)
                                     .padding()
                                 
                             }
                         }
-                        .background(Color("Navy").opacity(0.2))
+                        .background(Theme.Color.navy).opacity(0.2))
                         .cornerRadius(20)
                         .padding([.leading, .trailing], 30)
                     }
@@ -106,11 +106,11 @@ struct AddBudgetView: View {
                         Text("Add expense category")
                             .font(.system(size: 20))
                             .bold()
-                            .foregroundColor(Color("TextSupp"))
+                            .foregroundColor(Theme.Color.textSupp)
                     }
                     .padding([.leading, .trailing], 40)
                     .padding()
-                    .background(Color("Green"))
+                    .background(Theme.Color.green)
                     .clipShape(Capsule())
                 }
                 
@@ -146,11 +146,11 @@ struct AddBudgetView: View {
                         Text("Create")
                             .font(.system(size: 20))
                             .bold()
-                            .foregroundColor(Color("TextSupp"))
+                            .foregroundColor(Theme.Color.textSupp)
                     }
                     .padding([.leading, .trailing], 40)
                     .padding([.top, .bottom])
-                    .background(Color("Green"))
+                    .background(Theme.Color.green)
                     .clipShape(Capsule())
                 }
             }
@@ -171,9 +171,9 @@ struct AddBudgetView: View {
                     
                     Text("Couldn't create budget")
                         .font(.system(size: 18))
-                        .foregroundColor(Color("TextSupp"))
+                        .foregroundColor(Theme.Color.text)
                         .padding()
-                        .background(Color("Red"))
+                        .background(Theme.Color.red)
                         .cornerRadius(20)
                         .transition(.opacity)
                 }
