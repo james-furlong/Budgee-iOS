@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct friendly_sporkApp: App {
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
