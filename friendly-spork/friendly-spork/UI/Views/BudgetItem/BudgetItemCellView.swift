@@ -17,7 +17,7 @@ struct BudgetItemCellView: View {
                     Text(item.name)
                         .font(.system(size: 25))
                         .bold()
-                        .foregroundColor(Theme.Color.text)
+                        .foregroundColor(Theme.Color.textHardSupp)
                         .padding([.leading, .top], 20)
                     
                     Spacer()
@@ -26,10 +26,11 @@ struct BudgetItemCellView: View {
                         Text(item.remainingAmount)
                             .font(.system(size: 25))
                             .bold()
-                            .foregroundColor(Theme.Color.text)
+                            .foregroundColor(Theme.Color.textHardSupp)
                             
                         Text("Remaining")
                             .font(.system(size:15))
+                            .foregroundColor(Theme.Color.textHardSupp)
                     }
                     .padding([.trailing, .top], 20)
                 }
@@ -37,11 +38,12 @@ struct BudgetItemCellView: View {
                 ProgressView("", value: item.currentValue, total: item.maximumValue)
                     .font(.system(size: 20))
                     .foregroundColor(Theme.Color.text)
-                    .tint(item.isUnderBudget ? Theme.Color.green : Theme.Color.red)
+                    .tint(item.progressColor)
+                    .background()
                     .padding([.leading, .bottom, .trailing], 20)
             }
         }
-        .background(Theme.Color.colorArray.randomElement()?.opacity(0.2))
+        .background(Theme.Color.blue)//.opacity(0.6))
         .cornerRadius(20)
         .padding()
     }

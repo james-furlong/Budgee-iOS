@@ -59,7 +59,7 @@ struct BudgetView: View {
                     Image(systemName: "plus")
                         .font(.system(size: 25))
                         .bold()
-                        .foregroundColor(Theme.Color.textSupp)
+                        .foregroundColor(Theme.Color.textHard)
                 }
                 .padding([.leading, .trailing])
                 .padding()

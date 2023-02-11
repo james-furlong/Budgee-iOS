@@ -9,7 +9,6 @@ import SwiftUI
 
 struct BudgetCellView: View {
     let budget: Budget
-    private let backgroundColor = [Theme.Color.blue, Theme.Color.green, Theme.Color.navy, Theme.Color.sage].randomElement()
     
     var body: some View {
         GeometryReader { geo in
@@ -35,7 +34,7 @@ struct BudgetCellView: View {
                     .foregroundColor(Theme.Color.textSupp)
                     .padding()
             }
-            .background(budget.isUnderBudget ? backgroundColor : Theme.Color.red)
+            .background(budget.isUnderBudget ? Theme.Color.navy : Theme.Color.red)
             .cornerRadius(20)
             .padding()
         }

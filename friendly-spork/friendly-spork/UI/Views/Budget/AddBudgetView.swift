@@ -21,7 +21,7 @@ struct AddBudgetView: View {
     
     var body: some View {
         ZStack {
-            Theme.Color.sage.opacity(0.4).ignoresSafeArea()
+            Theme.Color.background.ignoresSafeArea()
             VStack {
                 VStack {
                     VStack {
@@ -52,7 +52,7 @@ struct AddBudgetView: View {
                                 .foregroundColor(Theme.Color.text)
                                 .padding()
                         }
-                        .background()
+                        .background(Theme.Color.background)
                         .cornerRadius(10)
                         .padding([.leading, .trailing, .top], 20)
                         
@@ -87,7 +87,7 @@ struct AddBudgetView: View {
                                 }
                             }
                         }
-                        .background()
+                        .background(Theme.Color.background)
                         .cornerRadius(10)
                         .padding([.leading, .trailing], 20)
                         
@@ -100,12 +100,12 @@ struct AddBudgetView: View {
                             }
                         }
                         .datePickerStyle(.compact)
-                        .accentColor(Theme.Color.navy)
-                        .background()
+                        .accentColor(Theme.Color.green)
+                        .background(Theme.Color.background)
                         .cornerRadius(10)
                         .padding([.leading, .trailing, .bottom], 20)
                     }
-                    .background(Theme.Color.sage)
+                    .background(Theme.Color.backgroundSupp)
                     .cornerRadius(10)
                     .padding([.leading, .trailing])
                     
@@ -126,14 +126,14 @@ struct AddBudgetView: View {
                                 .padding([.leading, .trailing], 40)
                                 .font(.system(size: 20))
                                 .bold()
-                                .foregroundColor(Theme.Color.textSupp)
+                                .foregroundColor(Theme.Color.textHard)
                         }
                         .padding()
                         .background(Theme.Color.green)
                         .cornerRadius(30)
                         .padding(.bottom, 20)
                     }
-                    .background(Theme.Color.sage)
+                    .background(Theme.Color.backgroundSupp)
                     .cornerRadius(10)
                     .padding()
                 }
@@ -172,7 +172,7 @@ struct AddBudgetView: View {
                         Text("Create")
                             .font(.system(size: 20))
                             .bold()
-                            .foregroundColor(Theme.Color.textSupp)
+                            .foregroundColor(Theme.Color.textHard)
                     }
                     .padding([.leading, .trailing], 40)
                     .padding([.top, .bottom])
