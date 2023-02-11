@@ -11,7 +11,7 @@ struct AddExpenseView: View {
     
     let completion: (BudgetItem) -> ()
     @State var name: String = ""
-    @State var maximumAmount: Double = 0
+    @State var maximumAmount: Double?
     
     init(completion: @escaping (BudgetItem) -> ()) {
         self.completion = completion
@@ -39,13 +39,15 @@ struct AddExpenseView: View {
                 .padding(.bottom, 20)
                 
                 Button {
-                    let item = BudgetItem(
-                        name: name,
-                        maxValue: maximumAmount
-                    )
-                    name = ""
-                    maximumAmount = 0
-                    completion(item)
+                    if let max = maximumAmount {
+                        let item = BudgetItem(
+                            name: name,
+                            maxValue: max
+                        )
+                        name = ""
+                        maximumAmount = 0
+                        completion(item)
+                    }
                 } label: {
                     Text("Add")
                         .font(.system(size: 16))

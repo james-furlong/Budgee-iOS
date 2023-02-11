@@ -30,6 +30,13 @@ class BudgetItem: Codable {
         self.expenseItems = []
     }
     
+    init(name: String, maxValue: Double, items: [ExpenseItem]) {
+        self.id = UUID().uuidString
+        self.name = name
+        self.maximumValue = maxValue
+        self.expenseItems = items
+    }
+    
     // MARK: - Computed values
     
     var currentValue: Double {
@@ -49,21 +56,50 @@ class BudgetItem: Codable {
         return "-$\(String(format: "%.2f", currentValue - maximumValue))"
     }
     
-    var progressColor: Color {
-        if !isUnderBudget {
+    var currentAmount: String {
+        if isUnderBudget {
+            return "$\(String(format: "%.2f", maximumValue - currentValue))"
+        }
+        return "-$\(String(format: "%.2f", currentValue - maximumValue))"
+    }
+    
+    var progressBarColor: Color {
+        if currentValue >= maximumValue {
             return Theme.Color.red
         }
-        if (maximumValue - currentValue) >= (maximumValue * 0.90) {
-            return Theme.Color.sage
+        if currentValue >= maximumValue * 0.9 {
+            return Theme.Color.yellow
         }
         
-        return Theme.Color.green
+        return Theme.Color.blue.opacity(0.7)
+    }
+    
+    var progressTextColor: Color {
+        if currentValue >= maximumValue {
+            return Theme.Color.textHardSupp
+        }
+        return Theme.Color.textHard
+    }
+    
+    var progressWidth: Double {
+        let screenWidth = UIScreen.main.bounds.width
+        if isUnderBudget {
+            let perc = currentValue / maximumValue
+            let progressWidth = screenWidth * perc
+        }
+        return screenWidth - 40.0
     }
     
     // MARK: - Functions
     
     func addExpense(_ item: ExpenseItem) {
         expenseItems.append(item)
+    }
+    
+    func progressWidthPadding(geoWidth: Double) -> Double {
+        let perc = currentValue / maximumValue
+        let progressWidth = geoWidth * perc
+        return geoWidth - progressWidth
     }
 }
 

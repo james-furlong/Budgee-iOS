@@ -37,15 +37,33 @@ struct BudgetView: View {
                         completion()
                     } label: {
                         Image(systemName: "multiply")
-                            .font(.system(size: 35))
+                            .font(.system(size: 35, weight: .semibold))
                             .foregroundColor(Theme.Color.red)
                     }
                     .padding()
                 }
                 
-                ForEach(budget.currentInterval?.items ?? [], id: \.self) { item in
-                    BudgetItemCellView(item: item)
+                VStack(spacing: 5) {
+                    HStack {
+                        Text("Expenses")
+                            .font(.system(size: 20))
+                            .bold()
+                            .foregroundColor(Theme.Color.text)
+                            .padding()
+                        
+                        Spacer()
+                    }
+                    
+                    VStack {
+                        ForEach(budget.currentInterval?.items ?? [], id: \.self) { item in
+                            BudgetItemCellView(item: item)
+                        }
+                    }
+                    .padding(.bottom)
                 }
+                .background(Theme.Color.backgroundSupp)
+                .cornerRadius(10)
+                .padding()
                 
                 Spacer()
             }
@@ -57,14 +75,13 @@ struct BudgetView: View {
                     isShowingAddExpense = true
                 } label: {
                     Image(systemName: "plus")
-                        .font(.system(size: 25))
-                        .bold()
+                        .font(.system(size: 40, weight: .semibold))
                         .foregroundColor(Theme.Color.textHard)
                 }
                 .padding([.leading, .trailing])
                 .padding()
                 .background(Theme.Color.green)
-                .clipShape(Capsule())
+                .clipShape(Circle())
             }
             
             if isShowingAddExpense {
@@ -100,8 +117,25 @@ struct BudgetView_Previews: PreviewProvider {
                     endDateTime: Calendar.current.date(byAdding: .month, value: 1, to: Date()) ?? Date(),
                     items: [
                         BudgetItem(
-                            name: "Test Item",
-                            maxValue: 100.00
+                            name: "Food",
+                            maxValue: 100.00,
+                            items: [
+                                ExpenseItem(name: "", amount: 45.0)
+                            ]
+                        ),
+                        BudgetItem(
+                            name: "Entertainment",
+                            maxValue: 100.00,
+                            items: [
+                                ExpenseItem(name: "", amount: 91.0)
+                            ]
+                        ),
+                        BudgetItem(
+                            name: "Fuel",
+                            maxValue: 100.00,
+                            items: [
+                                ExpenseItem(name: "", amount: 105.0)
+                            ]
                         )
                     ]
                 )

@@ -33,7 +33,6 @@ struct BudgetDashboardView: View {
             ]
         )
     ]
-//    @State var budgets = Injector.fileManager.retrieveBudgets()
     @State var currentBudget: Budget!
     @State var budgetShowing: Bool = false
     @State var addBudgetShowing: Bool = false
