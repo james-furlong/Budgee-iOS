@@ -54,7 +54,7 @@ struct AddExpenseView: View {
                 }
                 .padding([.leading, .trailing], 40)
                 .padding([.top, .bottom])
-                .background(Theme.Color.sage)
+                .background(Theme.Color.green)
                 .clipShape(Capsule())
             }
             .padding()

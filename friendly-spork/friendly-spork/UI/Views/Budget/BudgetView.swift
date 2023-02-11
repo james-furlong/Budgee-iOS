@@ -38,7 +38,7 @@ struct BudgetView: View {
                     } label: {
                         Image(systemName: "multiply")
                             .font(.system(size: 35))
-                            .foregroundColor(Theme.Color.green)
+                            .foregroundColor(Theme.Color.red)
                     }
                     .padding()
                 }

@@ -39,7 +39,6 @@ struct BudgetItemCellView: View {
                     .font(.system(size: 20))
                     .foregroundColor(Theme.Color.text)
                     .tint(item.progressColor)
-                    .background()
                     .padding([.leading, .bottom, .trailing], 20)
             }
         }
