@@ -117,11 +117,11 @@
 		60412818298E051400BE1143 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				60412816298DFCA700BE1143 /* BudgetDashboardView.swift */,
 				60412848298E29BE00BE1143 /* Budget */,
 				6066A07B2992465E00640BE5 /* BudgetItem */,
 				6066A07C2992467700640BE5 /* Expense */,
 				6066A07D2992469600640BE5 /* SpendItem */,
-				60412816298DFCA700BE1143 /* BudgetDashboardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

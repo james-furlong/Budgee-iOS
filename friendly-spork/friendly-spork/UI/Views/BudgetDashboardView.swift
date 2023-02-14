@@ -8,31 +8,7 @@
 import SwiftUI
 
 struct BudgetDashboardView: View {
-    @State var budgets = [
-        Budget(
-            id: "TestID",
-            name: "Test Budget",
-            intervalType: .monthly,
-            defaultItems: [
-                BudgetItem(
-                    name: "Test Item",
-                    maxValue: 100.00
-                )
-            ],
-            intervals: [
-                BudgetInterval(
-                    startDateTime: Date(),
-                    endDateTime: Calendar.current.date(byAdding: .month, value: 1, to: Date()) ?? Date(),
-                    items: [
-                        BudgetItem(
-                            name: "Test Item",
-                            maxValue: 100.00
-                        )
-                    ]
-                )
-            ]
-        )
-    ]
+    @State var budgets = Injector.fileManager.retrieveBudgets()
     @State var currentBudget: Budget!
     @State var budgetShowing: Bool = false
     @State var addBudgetShowing: Bool = false
@@ -71,6 +47,8 @@ struct BudgetDashboardView: View {
                                     }
                             )
                     }
+                    
+                    Spacer()
                 }
             }
             
@@ -91,6 +69,7 @@ struct BudgetDashboardView: View {
             if addBudgetShowing {
                 AddBudgetView {
                     addBudgetShowing = false
+                    budgets = Injector.fileManager.retrieveBudgets()
                 }
                 .transition(.slide)
             }

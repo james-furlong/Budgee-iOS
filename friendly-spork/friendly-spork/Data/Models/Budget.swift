@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Budget: Codable {
+class Budget: Codable, ObservableObject {
     let id: String
     let name: String
     let intervalType: Interval
@@ -47,6 +47,19 @@ class Budget: Codable {
         intervals
             .sorted(by: { $0.startDateTime > $1.startDateTime })
             .first
+    }
+    
+    // MARK: - Functions
+    
+    public func addSpendItem(item: ExpenseItem, itemId: String) {
+        let budgetItem: BudgetItem? = currentInterval?.items.first(where: { $0.id == itemId })
+        budgetItem?.expenseItems.append(item)
+        do {
+            try Injector.fileManager.saveOrUpdateBudget(budget: self)
+        }
+        catch {
+            Injector.log.error("Couldn't save spend item")
+        }
     }
 }
 

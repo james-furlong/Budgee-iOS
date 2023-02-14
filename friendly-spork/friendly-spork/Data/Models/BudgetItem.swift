@@ -94,6 +94,7 @@ class BudgetItem: Codable {
     
     func addExpense(_ item: ExpenseItem) {
         expenseItems.append(item)
+        print("HERE")
     }
     
     func progressWidthPadding(geoWidth: Double) -> Double {

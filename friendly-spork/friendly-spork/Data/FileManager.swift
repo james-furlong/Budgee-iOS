@@ -29,7 +29,7 @@ class FileManagerWrapper {
         }
         
         do {
-            let data: Data = try JSONEncoder().encode(budget).base64EncodedData()
+            let data: Data = try JSONEncoder().encode(budget)
             try? fileManager.removeItem(at: url)
             try data.write(to: url)
         }
@@ -71,7 +71,7 @@ class FileManagerWrapper {
         let dataPath = url.appendingPathComponent(directoryName)
         if !fileManager.fileExists(atPath: dataPath.absoluteString) {
             do {
-                try fileManager.createDirectory(atPath: dataPath.absoluteString, withIntermediateDirectories: true, attributes: nil)
+                try fileManager.createDirectory(atPath: dataPath.path, withIntermediateDirectories: true, attributes: nil)
             }
             catch {
                 Injector.log.error(error.localizedDescription)

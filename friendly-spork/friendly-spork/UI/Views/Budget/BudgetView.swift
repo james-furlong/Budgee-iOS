@@ -9,8 +9,16 @@ import SwiftUI
 
 struct BudgetView: View {
     @State var budget: Budget
-    @State var isShowingAddExpense: Bool = false
+    @State var budgetItems: [BudgetItem]
+    @State var isShowingAddExpense: Bool
     let completion: () -> ()
+    
+    init(budget: Budget, completion: @escaping () -> Void) {
+        self.budget = budget
+        self.budgetItems = budget.currentInterval?.items ?? []
+        self.isShowingAddExpense = false
+        self.completion = completion
+    }
     
     var body: some View {
         ZStack {
@@ -55,8 +63,10 @@ struct BudgetView: View {
                     }
                     
                     VStack {
-                        ForEach(budget.currentInterval?.items ?? [], id: \.self) { item in
-                            BudgetItemCellView(item: item)
+                        ForEach(budgetItems.indices, id: \.self) { i in
+                            VStack {
+                                BudgetItemCellView(item: self.$budgetItems[i])
+                            }
                         }
                     }
                     .padding(.bottom)
@@ -85,12 +95,15 @@ struct BudgetView: View {
             }
             
             if isShowingAddExpense {
+                Color.black.opacity(0.6).ignoresSafeArea()
+            }
+            
+            if isShowingAddExpense {
                 AddSpendItemView(budget: budget) {
-                    do {
-                        try Injector.fileManager.saveOrUpdateBudget(budget: budget)
-                    }
-                    catch {
-                        Injector.log.error("Unable to save spend item")
+                    let budgetId = budget.id
+                    if let newBudget = Injector.fileManager.retrieveBudgets().first(where: { $0.id == budgetId }) {
+                        budget = newBudget
+                        budgetItems = newBudget.currentInterval?.items ?? []
                     }
                     isShowingAddExpense = false
                 }

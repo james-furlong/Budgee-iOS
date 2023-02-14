@@ -19,47 +19,52 @@ struct AddExpenseView: View {
     
     var body: some View {
         ZStack {
-            VStack(spacing: 0) {
+            VStack(spacing: 10) {
                 VStack {
                     TextField("Name", text: $name)
+                        .font(.system(size: 20))
+                        .foregroundColor(Theme.Color.text)
                         .padding()
                 }
-                .background()
+                .background(Theme.Color.background)
                 .cornerRadius(10)
-                .padding(.bottom, 10)
+                .padding([.leading, .trailing, .top], 20)
                 
                 VStack {
                     TextField("Amount", value: $maximumAmount, format: .number)
-                        
-                        .keyboardType(.numberPad)
+                        .font(.system(size: 20))
+                        .foregroundColor(Theme.Color.text)
+                        .keyboardType(.decimalPad)
                         .padding()
                 }
-                .background()
+                .background(Theme.Color.background)
                 .cornerRadius(10)
-                .padding(.bottom, 20)
+                .padding([.leading, .trailing], 20)
                 
-                Button {
-                    if let max = maximumAmount {
-                        let item = BudgetItem(
-                            name: name,
-                            maxValue: max
-                        )
-                        name = ""
-                        maximumAmount = 0
-                        completion(item)
+                VStack {
+                    Button {
+                        if let max = maximumAmount {
+                            let item = BudgetItem(
+                                name: name,
+                                maxValue: max
+                            )
+                            name = ""
+                            maximumAmount = 0
+                            completion(item)
+                        }
+                    } label: {
+                        Text("Add")
+                            .font(.system(size: 16))
+                            .bold()
+                            .foregroundColor(Theme.Color.text)
                     }
-                } label: {
-                    Text("Add")
-                        .font(.system(size: 16))
-                        .bold()
-                        .foregroundColor(Theme.Color.text)
+                    .padding([.leading, .trailing], 40)
+                    .padding([.top, .bottom])
+                    .background(Theme.Color.green)
+                    .clipShape(Capsule())
                 }
-                .padding([.leading, .trailing], 40)
-                .padding([.top, .bottom])
-                .background(Theme.Color.green)
-                .clipShape(Capsule())
+                .padding([.bottom, .top], 20)
             }
-            .padding()
         }
         .background(Theme.Color.backgroundSupp)
         .cornerRadius(20)

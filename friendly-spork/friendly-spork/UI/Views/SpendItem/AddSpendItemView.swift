@@ -9,9 +9,9 @@ import SwiftUI
 
 struct AddSpendItemView: View {
     let budget: Budget
-    @State private var name: String? = nil
+    @State private var name: String = ""
     @State private var amount: Double? = nil
-    @State private var item: BudgetItem? = nil
+    @State private var itemId: String = ""
     let completion: () -> ()
     
     var body: some View {
@@ -19,7 +19,7 @@ struct AddSpendItemView: View {
             VStack(spacing: 10) {
                 VStack {
                     VStack {
-                        TextField("Name", value: $amount, format: .number)
+                        TextField("Name", text: $name)
                             .font(.system(size: 20))
                             .foregroundColor(Theme.Color.text)
                             .padding()
@@ -39,54 +39,63 @@ struct AddSpendItemView: View {
                     .cornerRadius(10)
                     .padding([.leading, .trailing], 20)
                     
-                    Menu {
-                        Picker(selection: $item) {
-                            ForEach(budget.defaultItems, id: \.self) { item in
-                                Text(item.name)
-                                    .font(.system(size: 40))
-                                    .foregroundColor(Theme.Color.text)
-                                    .tag(item as BudgetItem)
+                    HStack {
+                        Text("Select expense type")
+                            .font(.system(size: 16))
+                            .foregroundColor(.black.opacity(0.7))
+                        
+                        Spacer()
+                    }
+                    .padding([.leading, .trailing, .top], 20)
+                    
+                    
+                    VStack {
+                        ForEach(budget.defaultItems, id: \.id) { item in
+                            Button {
+                                itemId = item.id
+                            } label: {
+                                HStack {
+                                    Text(item.name)
+                                        .font(.system(size: 25))
+                                        .foregroundColor(Theme.Color.text)
+                                        .tag(item as BudgetItem)
+                                    
+                                    Spacer()
+                                    
+                                    if item.id == itemId {
+                                        Image(systemName: "checkmark.seal.fill")
+                                            .font(.system(size: 20))
+                                            .foregroundColor(Theme.Color.yellow)
+                                    }
+                                }
                             }
-                        } label: { }
-                    } label: {
-                        HStack {
-                            Text("Expense")
-                                .font(.system(size: 20))
-                                .foregroundColor(Theme.Color.text)
-                                .padding()
-                            
-                            Spacer()
-                            
-                            if item == nil {
-                                Image(systemName: "chevron.right")
-                                    .font(.system(size: 20))
-                                    .foregroundColor(Theme.Color.text)
-                                    .padding()
-                            }
-                            else {
-                                Text(item?.name ?? "")
-                                    .font(.system(size: 20))
-                                    .foregroundColor(Theme.Color.text)
-                                    .padding()
-                            }
+                            .padding()
+                            .background(Theme.Color.blue.opacity(0.6))
                         }
                     }
                     .background()
-                    .cornerRadius(10)
-                    .padding([.leading, .trailing], 20)
+                    .cornerRadius(20)
+                    .padding([.leading, .trailing], 15)
                 }
                 .cornerRadius(10)
                 .padding(.bottom, 20)
 
                 Button {
-                    if let name = name, let amount = amount {
-                        budget
-                            .currentInterval?.items
-                            .first(where: { $0.id == item?.id })?
-                            .addExpense(ExpenseItem(
+                    if let amount = amount {
+                        budget.addSpendItem(
+                            item: ExpenseItem(
                                 name: name,
                                 amount: amount
-                            ))
+                            ),
+                            itemId: itemId
+                        )
+                        
+                        do {
+                            try Injector.fileManager.saveOrUpdateBudget(budget: budget)
+                        }
+                        catch {
+                            Injector.log.error("Could not save expense item")
+                        }
                     }
                     completion()
                 } label: {
@@ -110,28 +119,30 @@ struct AddSpendItemView: View {
 
 struct AddSpendItemView_Previews: PreviewProvider {
     static var previews: some View {
-        AddSpendItemView(budget: Budget(
-            id: "TestID",
-            name: "Test Budget",
-            intervalType: .monthly,
-            defaultItems: [
-                BudgetItem(
-                    name: "Test Item",
-                    maxValue: 100.00
-                )
-            ],
-            intervals: [
-                BudgetInterval(
-                    startDateTime: Date(),
-                    endDateTime: Calendar.current.date(byAdding: .month, value: 1, to: Date()) ?? Date(),
-                    items: [
-                        BudgetItem(
-                            name: "Test Item",
-                            maxValue: 100.00
-                        )
-                    ]
-                )
-            ]
-        )) { }
+        AddSpendItemView(
+            budget: Budget(
+                id: "TestID",
+                name: "Test Budget",
+                intervalType: .monthly,
+                defaultItems: [
+                    BudgetItem(
+                        name: "Test Item",
+                        maxValue: 100.00
+                    )
+                ],
+                intervals: [
+                    BudgetInterval(
+                        startDateTime: Date(),
+                        endDateTime: Calendar.current.date(byAdding: .month, value: 1, to: Date()) ?? Date(),
+                        items: [
+                            BudgetItem(
+                                name: "Test Item",
+                                maxValue: 100.00
+                            )
+                        ]
+                    )
+                ]
+            )
+        ) { }
     }
 }

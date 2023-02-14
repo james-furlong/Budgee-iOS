@@ -10,8 +10,8 @@ import SwiftUI
 struct AddBudgetView: View {
     let intervals: [Interval] = [.weekly, .fortnightly, .monthly]
     @State var name: String = ""
-    @State var items: [BudgetItem] = [BudgetItem(name: "Test", maxValue: 100), BudgetItem(name: "Test", maxValue: 100)]
-    @State var interval: Interval?
+    @State var items: [BudgetItem] = []
+    @State var interval: Interval = .weekly
     @State var startDate: Date = Date()
     
     @State var addItemViewIsShowing: Bool = false
@@ -73,7 +73,7 @@ struct AddBudgetView: View {
                                 
                                 Spacer()
                                 
-                                if let name = interval?.name {
+                                if let name = interval.name {
                                     Text(name)
                                         .font(.system(size: 20))
                                         .foregroundColor(Theme.Color.text)
@@ -142,30 +142,29 @@ struct AddBudgetView: View {
                 
                 VStack {
                     Button {
-                        if let interval {
-                            let initialInterval: BudgetInterval = BudgetInterval(
-                                startDateTime: startDate,
-                                endDateTime: interval.endDate(from: startDate) ,
-                                items: items
-                            )
-                            
-                            let budget = Budget(
-                                id: UUID().uuidString,
-                                name: name,
-                                intervalType: interval,
-                                defaultItems: items,
-                                intervals: [initialInterval]
-                            )
-                            
-                            do {
-                                try Injector.fileManager.saveOrUpdateBudget(budget: budget)
-                            }
-                            catch {
-                                Injector.log.error("Unable to save budget")
-                                errorIsShowing = true
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                                    errorIsShowing = false
-                                }
+                        let initialInterval: BudgetInterval = BudgetInterval(
+                            startDateTime: startDate,
+                            endDateTime: interval.endDate(from: startDate) ,
+                            items: items
+                        )
+                        
+                        let budget = Budget(
+                            id: UUID().uuidString,
+                            name: name,
+                            intervalType: interval,
+                            defaultItems: items,
+                            intervals: [initialInterval]
+                        )
+                        
+                        do {
+                            try Injector.fileManager.saveOrUpdateBudget(budget: budget)
+                            completion()
+                        }
+                        catch {
+                            Injector.log.error("Unable to save budget")
+                            errorIsShowing = true
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                errorIsShowing = false
                             }
                         }
                     } label: {
