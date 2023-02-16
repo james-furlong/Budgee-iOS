@@ -13,6 +13,14 @@ struct AddExpenseView: View {
     @State var name: String = ""
     @State var maximumAmount: Double?
     
+    private var buttonIsEnabled: Bool {
+        return !name.isEmpty && maximumAmount != nil
+    }
+    
+    private var buttonColor: Color {
+        return buttonIsEnabled ? Theme.Color.green : Theme.Color.green.opacity(0.3)
+    }
+    
     init(completion: @escaping (BudgetItem) -> ()) {
         self.completion = completion
     }
@@ -60,10 +68,11 @@ struct AddExpenseView: View {
                     }
                     .padding([.leading, .trailing], 40)
                     .padding([.top, .bottom])
-                    .background(Theme.Color.green)
+                    .background(buttonColor)
                     .clipShape(Capsule())
                 }
                 .padding([.bottom, .top], 20)
+                .disabled(!buttonIsEnabled)
             }
         }
         .background(Theme.Color.backgroundSupp)

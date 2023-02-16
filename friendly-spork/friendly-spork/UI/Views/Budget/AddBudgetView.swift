@@ -17,6 +17,14 @@ struct AddBudgetView: View {
     @State var addItemViewIsShowing: Bool = false
     @State var errorIsShowing: Bool = false
     
+    private var buttonIsEnabled: Bool {
+        return !name.isEmpty && !items.isEmpty
+    }
+    
+    private var buttonColor: Color {
+        return buttonIsEnabled ? Theme.Color.green : Theme.Color.green.opacity(0.3)
+    }
+    
     let completion: () -> ()
     
     var body: some View {
@@ -172,11 +180,13 @@ struct AddBudgetView: View {
                             .font(.system(size: 20))
                             .bold()
                             .foregroundColor(Theme.Color.textHard)
+                            .padding([.leading, .trailing], 40)
+                            .padding([.top, .bottom])
+                            .background(buttonColor)
+                            .clipShape(Capsule())
                     }
-                    .padding([.leading, .trailing], 40)
-                    .padding([.top, .bottom])
-                    .background(Theme.Color.green)
-                    .clipShape(Capsule())
+                    .disabled(!buttonIsEnabled)
+                    
                 }
             }
             .ignoresSafeArea(.keyboard)
