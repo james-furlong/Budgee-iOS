@@ -152,7 +152,8 @@ struct BudgetView_Previews: PreviewProvider {
                         )
                     ]
                 )
-            ]
+            ],
+            oneOff: true
         )) { }
     }
 }

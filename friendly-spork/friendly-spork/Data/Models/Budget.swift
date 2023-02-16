@@ -13,15 +13,17 @@ class Budget: Codable, ObservableObject {
     let intervalType: Interval
     var defaultItems: [BudgetItem]
     var intervals: [BudgetInterval]
+    let oneOff: Bool
     
     // MARK: - Initialization
     
-    init(id: String, name: String, intervalType: Interval, defaultItems: [BudgetItem], intervals: [BudgetInterval]) {
+    init(id: String, name: String, intervalType: Interval, defaultItems: [BudgetItem], intervals: [BudgetInterval], oneOff: Bool) {
         self.id = id
         self.name = name
         self.intervalType = intervalType
         self.defaultItems = defaultItems
         self.intervals = intervals
+        self.oneOff = oneOff
     }
     
     var statusTitle: String {

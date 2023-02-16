@@ -170,7 +170,8 @@ struct AddSpendItemView_Previews: PreviewProvider {
                             )
                         ]
                     )
-                ]
+                ],
+                oneOff: true
             )
         ) { }
     }

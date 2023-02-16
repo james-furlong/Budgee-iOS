@@ -13,6 +13,7 @@ struct AddBudgetView: View {
     @State var items: [BudgetItem] = []
     @State var interval: Interval = .weekly
     @State var startDate: Date = Date()
+    @State var oneOff: Bool = false
     
     @State var addItemViewIsShowing: Bool = false
     @State var errorIsShowing: Bool = false
@@ -21,8 +22,8 @@ struct AddBudgetView: View {
         return !name.isEmpty && !items.isEmpty
     }
     
-    private var buttonColor: Color {
-        return buttonIsEnabled ? Theme.Color.green : Theme.Color.green.opacity(0.3)
+    private var buttonOpacity: Double {
+        return buttonIsEnabled ? 1.0 : 0.3
     }
     
     let completion: () -> ()
@@ -53,6 +54,14 @@ struct AddBudgetView: View {
                         }
                     }
                      
+                    HStack {
+                        Text("Details")
+                        
+                        Spacer()
+                    }
+                    .padding(.leading, 30)
+                    .padding(.bottom, -5)
+                    
                     VStack(spacing: 15) {
                         VStack {
                             TextField("Name", text: $name)
@@ -99,16 +108,35 @@ struct AddBudgetView: View {
                         .cornerRadius(10)
                         .padding([.leading, .trailing], 20)
                         
-                        DatePicker(selection: $startDate, in: Date.now..., displayedComponents: .date) {
-                            HStack {
-                                Text("Start date")
-                                    .font(.system(size: 20))
-                                    .foregroundColor(Theme.Color.text)
-                                    .padding()
+                        HStack {
+                            DatePicker(selection: $startDate, in: Date.now..., displayedComponents: .date) {
+                                HStack {
+                                    Text("Start date")
+                                        .font(.system(size: 20))
+                                        .foregroundColor(Theme.Color.text)
+                                        .padding()
+                                }
                             }
+                            .datePickerStyle(.compact)
+                            .accentColor(Theme.Color.green)
+                            .padding(.trailing, 10)
                         }
-                        .datePickerStyle(.compact)
-                        .accentColor(Theme.Color.green)
+                        .background(Theme.Color.background)
+                        .cornerRadius(10)
+                        .padding([.leading, .trailing], 20)
+                        
+                        HStack {
+                            Text("One-off")
+                                .font(.system(size: 20))
+                                .foregroundColor(Theme.Color.text)
+                                .padding()
+                            
+                            Spacer()
+                            
+                            Toggle("", isOn: $oneOff)
+                                .padding(.trailing, 20)
+                                .toggleStyle(SwitchToggleStyle(tint: Theme.Color.green))
+                        }
                         .background(Theme.Color.background)
                         .cornerRadius(10)
                         .padding([.leading, .trailing, .bottom], 20)
@@ -117,29 +145,42 @@ struct AddBudgetView: View {
                     .cornerRadius(10)
                     .padding([.leading, .trailing])
                     
-                    VStack(spacing: 30) {
+                    HStack {
+                        Text("Categories")
+                        
+                        Spacer()
+                    }
+                    .padding([.leading, .top], 30)
+                    .padding(.bottom, -15)
+                    
+                    VStack(spacing: items.isEmpty ? 0 : 30) {
                         VStack {
                             ForEach(items, id: \.self) { item in
                                 ExpenseView(name: item.name, maximumAmount: item.maximumValue)
                             }
                         }
-                        .padding(.top, 20)
+                        .padding(.top)
                         
-                        
-                        Button {
-                            addItemViewIsShowing = true
-                        } label: {
-                            Text("Add expense category")
-                                .frame(height: 25)
-                                .padding([.leading, .trailing], 40)
-                                .font(.system(size: 20))
-                                .bold()
-                                .foregroundColor(Theme.Color.textHard)
+                        HStack {
+                            Spacer()
+                            
+                            Button {
+                                addItemViewIsShowing = true
+                            } label: {
+                                Text("Add expense category")
+                                    .frame(height: 25)
+                                    .padding([.leading, .trailing], 40)
+                                    .font(.system(size: 20))
+                                    .bold()
+                                    .foregroundColor(Theme.Color.textHard)
+                            }
+                            .padding()
+                            .background(Theme.Color.green)
+                            .cornerRadius(30)
+                            .padding(.bottom, 20)
+                            
+                            Spacer()
                         }
-                        .padding()
-                        .background(Theme.Color.green)
-                        .cornerRadius(30)
-                        .padding(.bottom, 20)
                     }
                     .background(Theme.Color.backgroundSupp)
                     .cornerRadius(10)
@@ -161,7 +202,8 @@ struct AddBudgetView: View {
                             name: name,
                             intervalType: interval,
                             defaultItems: items,
-                            intervals: [initialInterval]
+                            intervals: [initialInterval],
+                            oneOff: oneOff
                         )
                         
                         do {
@@ -179,10 +221,10 @@ struct AddBudgetView: View {
                         Text("Create")
                             .font(.system(size: 20))
                             .bold()
-                            .foregroundColor(Theme.Color.textHard)
+                            .foregroundColor(Theme.Color.textHard.opacity(buttonOpacity))
                             .padding([.leading, .trailing], 40)
                             .padding([.top, .bottom])
-                            .background(buttonColor)
+                            .background(Theme.Color.green.opacity(buttonOpacity))
                             .clipShape(Capsule())
                     }
                     .disabled(!buttonIsEnabled)

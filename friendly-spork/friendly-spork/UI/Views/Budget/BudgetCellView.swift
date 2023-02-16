@@ -64,7 +64,8 @@ struct BudgetCellView_Previews: PreviewProvider {
                         )
                     ]
                 )
-            ]
+            ],
+            oneOff: true
         ))
     }
 }
