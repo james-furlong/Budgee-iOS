@@ -49,7 +49,7 @@ struct BudgetItemCellView_Previews: PreviewProvider {
         name: "Test Item",
         maxValue: 100.00,
         items: [
-            ExpenseItem(name: "Test", amount: 89.0)
+            ExpenseItem(name: "Test", amount: 89.0, date: Date())
         ]
     )
     

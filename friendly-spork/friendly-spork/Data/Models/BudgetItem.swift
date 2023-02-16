@@ -121,4 +121,5 @@ extension BudgetItem: Hashable {
 struct ExpenseItem: Codable, Hashable {
     let name: String
     let amount: Double
+    let date: Date
 }

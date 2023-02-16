@@ -11,8 +11,17 @@ struct AddSpendItemView: View {
     let budget: Budget
     @State private var name: String = ""
     @State private var amount: Double? = nil
+    @State private var date: Date = Date()
     @State private var itemId: String = ""
     let completion: () -> ()
+    
+    private var buttonIsEnabled: Bool {
+        return !name.isEmpty && amount != nil
+    }
+    
+    private var buttonColor: Color {
+        return buttonIsEnabled ? Theme.Color.green : Theme.Color.green.opacity(0.3)
+    }
     
     var body: some View {
         ZStack {
@@ -34,6 +43,25 @@ struct AddSpendItemView: View {
                             .foregroundColor(Theme.Color.text)
                             .keyboardType(.numberPad)
                             .padding()
+                    }
+                    .background()
+                    .cornerRadius(10)
+                    .padding([.leading, .trailing], 20)
+                    
+                    VStack {
+                        HStack {
+                            DatePicker(selection: $date, in: ...Date.now, displayedComponents: .date) {
+                                HStack {
+                                    Text("Date")
+                                        .font(.system(size: 20))
+                                        .foregroundColor(Theme.Color.text)
+                                        .padding()
+                                }
+                            }
+                            .datePickerStyle(.compact)
+                            .accentColor(Theme.Color.green)
+                        }
+                        .padding(.trailing, 10)
                     }
                     .background()
                     .cornerRadius(10)
@@ -73,7 +101,6 @@ struct AddSpendItemView: View {
                             .background(Theme.Color.blue.opacity(0.6))
                         }
                     }
-                    .background()
                     .cornerRadius(20)
                     .padding([.leading, .trailing], 15)
                 }
@@ -85,7 +112,8 @@ struct AddSpendItemView: View {
                         budget.addSpendItem(
                             item: ExpenseItem(
                                 name: name,
-                                amount: amount
+                                amount: amount,
+                                date: date
                             ),
                             itemId: itemId
                         )
@@ -103,11 +131,12 @@ struct AddSpendItemView: View {
                         .font(.system(size: 16))
                         .bold()
                         .foregroundColor(Theme.Color.text)
+                        .padding([.leading, .trailing], 40)
+                        .padding([.top, .bottom])
+                        .background(buttonColor)
+                        .clipShape(Capsule())
                 }
-                .padding([.leading, .trailing], 40)
-                .padding([.top, .bottom])
-                .background(Theme.Color.green)
-                .clipShape(Capsule())
+                .disabled(!buttonIsEnabled)
             }
             .padding(.bottom, 20)
         }

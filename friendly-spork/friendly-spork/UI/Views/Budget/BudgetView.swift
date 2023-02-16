@@ -133,21 +133,21 @@ struct BudgetView_Previews: PreviewProvider {
                             name: "Food",
                             maxValue: 100.00,
                             items: [
-                                ExpenseItem(name: "", amount: 45.0)
+                                ExpenseItem(name: "", amount: 45.0, date: Date())
                             ]
                         ),
                         BudgetItem(
                             name: "Entertainment",
                             maxValue: 100.00,
                             items: [
-                                ExpenseItem(name: "", amount: 91.0)
+                                ExpenseItem(name: "", amount: 91.0, date: Date())
                             ]
                         ),
                         BudgetItem(
                             name: "Fuel",
                             maxValue: 100.00,
                             items: [
-                                ExpenseItem(name: "", amount: 105.0)
+                                ExpenseItem(name: "", amount: 105.0, date: Date())
                             ]
                         )
                     ]
