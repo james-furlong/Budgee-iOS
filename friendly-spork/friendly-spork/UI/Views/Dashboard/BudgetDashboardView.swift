@@ -75,7 +75,7 @@ struct BudgetDashboardView: View {
             }
             
             if budgetShowing {
-                BudgetView(budget: currentBudget) {
+                TabBarView(budget: currentBudget) {
                     budgetShowing = false
                 }
             }
