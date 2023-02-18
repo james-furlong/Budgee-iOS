@@ -122,4 +122,11 @@ struct ExpenseItem: Codable, Hashable {
     let name: String
     let amount: Double
     let date: Date
+    
+    var dateString: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy"
+        
+        return formatter.string(from: date)
+    }
 }

@@ -21,6 +21,31 @@ class BudgetInterval: Codable {
         self.endDateTime = endDateTime
         self.items = items
     }
+    
+    // MARK: - Variable
+    
+    private var maxAmount: Double {
+        items
+            .map { $0.maximumValue }
+            .reduce(0, +)
+    }
+    
+    private var totalAmount: Double {
+        items
+            .map { $0.currentValue }
+            .reduce(0, +)
+    }
+    
+    var intervalTitle: String {
+        let formatter: DateFormatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        
+        return formatter.string(from: startDateTime) + " - " + formatter.string(from: endDateTime)
+    }
+    
+    var amountString: String {
+        "$" + String(format: "%.2f", totalAmount) + " / " + "$" + String(format: "%.2f", maxAmount)
+    }
 }
 
 extension BudgetInterval: Hashable {

@@ -26,23 +26,20 @@ struct TabBarView: View {
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
             TabView(selection: $selectedTab) {
-                BudgetView(budget: budget, budgetItems: budgetItems) { completion() }
+                BudgetView(budget: budget, budgetItems: budgetItems)
                     .tag(TabBarItem.home)
                 
-                Color(.blue)
-                    .ignoresSafeArea(.all, edges: .all)
+                SpendHistoryView(budgetItems: budgetItems)
                     .tag(TabBarItem.spendHistory)
                 
                 Color(.green)
                     .ignoresSafeArea(.all, edges: .all)
                     .tag(TabBarItem.add)
                 
-                Color(.yellow)
-                    .ignoresSafeArea(.all, edges: .all)
+                BudgetHistoryView(budget: budget)
                     .tag(TabBarItem.budgetHistory)
                 
-                Color(.gray)
-                    .ignoresSafeArea(.all, edges: .all)
+                SettingsView() { completion() }
                     .tag(TabBarItem.settings)
             }
             
@@ -57,7 +54,7 @@ struct TabBarView: View {
                                 .renderingMode(.template)
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 25.0, height: 25.0)
-                                .foregroundColor(selectedTab == item ? .orange : .green)
+                                .foregroundColor(selectedTab == item ? Theme.Color.green : Theme.Color.blue)
                                 .padding(10)
                                 .offset(x: -10, y: -5)
                         }
@@ -116,21 +113,23 @@ struct TabBarView_Previews: PreviewProvider {
                             name: "Food",
                             maxValue: 100.00,
                             items: [
-                                ExpenseItem(name: "", amount: 45.0, date: Date())
+                                ExpenseItem(name: "Coles", amount: 45.0, date: Date()),
+                                ExpenseItem(name: "McDonalds", amount: 5.0, date: Date())
                             ]
                         ),
                         BudgetItem(
                             name: "Entertainment",
                             maxValue: 100.00,
                             items: [
-                                ExpenseItem(name: "", amount: 91.0, date: Date())
+                                ExpenseItem(name: "Movies", amount: 50.0, date: Date()),
+                                ExpenseItem(name: "Mini golf", amount: 40.0, date: Date())
                             ]
                         ),
                         BudgetItem(
                             name: "Fuel",
                             maxValue: 100.00,
                             items: [
-                                ExpenseItem(name: "", amount: 105.0, date: Date())
+                                ExpenseItem(name: "BP", amount: 105.0, date: Date())
                             ]
                         )
                     ]

@@ -11,12 +11,9 @@ struct BudgetView: View {
     @State var budget: Budget
     @State var budgetItems: [BudgetItem]
     
-    let completion: () -> ()
-    
-    init(budget: Budget, budgetItems: [BudgetItem], completion: @escaping () -> Void) {
+    init(budget: Budget, budgetItems: [BudgetItem]) {
         self.budget = budget
         self.budgetItems = budgetItems
-        self.completion = completion
     }
     
     var body: some View {
@@ -39,16 +36,8 @@ struct BudgetView: View {
                     }
                     
                     Spacer()
-                    
-                    Button {
-                        completion()
-                    } label: {
-                        Image(systemName: "multiply")
-                            .font(.system(size: 35, weight: .semibold))
-                            .foregroundColor(Theme.Color.red)
-                    }
-                    .padding()
                 }
+                .padding(.top, 20)
                 
                 VStack(spacing: 5) {
                     HStack {
@@ -124,6 +113,6 @@ struct BudgetView_Previews: PreviewProvider {
     )
     
     static var previews: some View {
-        BudgetView(budget: budget, budgetItems: budget.currentInterval?.items ?? []) { }
+        BudgetView(budget: budget, budgetItems: budget.currentInterval?.items ?? [])
     }
 }

@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		6007B58B299F564E003ACB60 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6007B58A299F564E003ACB60 /* TabBarView.swift */; };
 		6007B58D299F5688003ACB60 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6007B58C299F5688003ACB60 /* TabBarItem.swift */; };
+		6007B590299F82AC003ACB60 /* SpendHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6007B58F299F82AC003ACB60 /* SpendHistoryView.swift */; };
+		6007B592299F84AB003ACB60 /* SpendHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6007B591299F84AB003ACB60 /* SpendHistoryCell.swift */; };
+		6007B59729A0D700003ACB60 /* BudgetHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6007B59629A0D700003ACB60 /* BudgetHistoryView.swift */; };
+		6007B59D29A14F44003ACB60 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6007B59C29A14F44003ACB60 /* SettingsView.swift */; };
+		6007B59F29A14F99003ACB60 /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6007B59E29A14F99003ACB60 /* SettingsItem.swift */; };
+		6007B5A129A1659D003ACB60 /* privacyPolicy.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6007B5A029A1659D003ACB60 /* privacyPolicy.txt */; };
+		6007B5A329A165F5003ACB60 /* PrivacyPolicySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6007B5A229A165F5003ACB60 /* PrivacyPolicySheet.swift */; };
 		60412806298DF40800BE1143 /* friendly_sporkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60412805298DF40800BE1143 /* friendly_sporkApp.swift */; };
 		60412808298DF40800BE1143 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60412807298DF40800BE1143 /* ContentView.swift */; };
 		6041280A298DF40900BE1143 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60412809298DF40900BE1143 /* Assets.xcassets */; };
@@ -35,6 +42,13 @@
 /* Begin PBXFileReference section */
 		6007B58A299F564E003ACB60 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		6007B58C299F5688003ACB60 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
+		6007B58F299F82AC003ACB60 /* SpendHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendHistoryView.swift; sourceTree = "<group>"; };
+		6007B591299F84AB003ACB60 /* SpendHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendHistoryCell.swift; sourceTree = "<group>"; };
+		6007B59629A0D700003ACB60 /* BudgetHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetHistoryView.swift; sourceTree = "<group>"; };
+		6007B59C29A14F44003ACB60 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		6007B59E29A14F99003ACB60 /* SettingsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItem.swift; sourceTree = "<group>"; };
+		6007B5A029A1659D003ACB60 /* privacyPolicy.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = privacyPolicy.txt; sourceTree = "<group>"; };
+		6007B5A229A165F5003ACB60 /* PrivacyPolicySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicySheet.swift; sourceTree = "<group>"; };
 		60412802298DF40800BE1143 /* friendly-spork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "friendly-spork.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		60412805298DF40800BE1143 /* friendly_sporkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = friendly_sporkApp.swift; sourceTree = "<group>"; };
 		60412807298DF40800BE1143 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -74,10 +88,50 @@
 		6007B589299EB16F003ACB60 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				6066A07B2992465E00640BE5 /* BudgetItem */,
+				6066A07D2992469600640BE5 /* SpendItem */,
 				60412816298DFCA700BE1143 /* BudgetDashboardView.swift */,
 				6041285F2991A61000BE1143 /* BudgetCellView.swift */,
 			);
 			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		6007B58E299F828D003ACB60 /* Spend history */ = {
+			isa = PBXGroup;
+			children = (
+				6007B58F299F82AC003ACB60 /* SpendHistoryView.swift */,
+				6007B591299F84AB003ACB60 /* SpendHistoryCell.swift */,
+			);
+			path = "Spend history";
+			sourceTree = "<group>";
+		};
+		6007B59529A0D6EF003ACB60 /* Budget history */ = {
+			isa = PBXGroup;
+			children = (
+				6007B59629A0D700003ACB60 /* BudgetHistoryView.swift */,
+			);
+			path = "Budget history";
+			sourceTree = "<group>";
+		};
+		6007B59A29A14E74003ACB60 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				6007B59C29A14F44003ACB60 /* SettingsView.swift */,
+				6007B5A229A165F5003ACB60 /* PrivacyPolicySheet.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		6007B59B29A14EAD003ACB60 /* Budget */ = {
+			isa = PBXGroup;
+			children = (
+				60412848298E29BE00BE1143 /* Home */,
+				6007B58E299F828D003ACB60 /* Spend history */,
+				6066A07C2992467700640BE5 /* Add Expense */,
+				6007B59529A0D6EF003ACB60 /* Budget history */,
+				6007B59A29A14E74003ACB60 /* Settings */,
+			);
+			path = Budget;
 			sourceTree = "<group>";
 		};
 		604127F9298DF40800BE1143 = {
@@ -106,6 +160,7 @@
 				60412807298DF40800BE1143 /* ContentView.swift */,
 				60412809298DF40900BE1143 /* Assets.xcassets */,
 				6041280B298DF40900BE1143 /* friendly_spork.entitlements */,
+				6007B5A029A1659D003ACB60 /* privacyPolicy.txt */,
 				6041280C298DF40900BE1143 /* Preview Content */,
 			);
 			path = "friendly-spork";
@@ -131,10 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				6007B589299EB16F003ACB60 /* Dashboard */,
-				60412848298E29BE00BE1143 /* Budget */,
-				6066A07B2992465E00640BE5 /* BudgetItem */,
-				6066A07C2992467700640BE5 /* Expense */,
-				6066A07D2992469600640BE5 /* SpendItem */,
+				6007B59B29A14EAD003ACB60 /* Budget */,
 				6007B58A299F564E003ACB60 /* TabBarView.swift */,
 			);
 			path = Views;
@@ -150,13 +202,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		60412848298E29BE00BE1143 /* Budget */ = {
+		60412848298E29BE00BE1143 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				6041283F298E26F700BE1143 /* BudgetView.swift */,
 				60412846298E29BA00BE1143 /* AddBudgetView.swift */,
 			);
-			path = Budget;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		60412849298FA13800BE1143 /* Data */ = {
@@ -175,6 +227,7 @@
 			children = (
 				60412853298FA3EE00BE1143 /* Invterval.swift */,
 				6007B58C299F5688003ACB60 /* TabBarItem.swift */,
+				6007B59E29A14F99003ACB60 /* SettingsItem.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -205,13 +258,13 @@
 			path = BudgetItem;
 			sourceTree = "<group>";
 		};
-		6066A07C2992467700640BE5 /* Expense */ = {
+		6066A07C2992467700640BE5 /* Add Expense */ = {
 			isa = PBXGroup;
 			children = (
 				60412858299052AA00BE1143 /* AddExpenseView.swift */,
 				6041285A2990AD8100BE1143 /* ExpenseView.swift */,
 			);
-			path = Expense;
+			path = "Add Expense";
 			sourceTree = "<group>";
 		};
 		6066A07D2992469600640BE5 /* SpendItem */ = {
@@ -280,6 +333,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6007B5A129A1659D003ACB60 /* privacyPolicy.txt in Resources */,
 				6041280E298DF40900BE1143 /* Preview Assets.xcassets in Resources */,
 				6041280A298DF40900BE1143 /* Assets.xcassets in Resources */,
 			);
@@ -294,6 +348,7 @@
 			files = (
 				60985E1A299618C100F00401 /* Logger.swift in Sources */,
 				60412854298FA3EE00BE1143 /* Invterval.swift in Sources */,
+				6007B590299F82AC003ACB60 /* SpendHistoryView.swift in Sources */,
 				6041284D298FA32F00BE1143 /* Budget.swift in Sources */,
 				60412851298FA3B300BE1143 /* BudgetItem.swift in Sources */,
 				604128602991A61000BE1143 /* BudgetCellView.swift in Sources */,
@@ -301,15 +356,20 @@
 				6041285B2990AD8100BE1143 /* ExpenseView.swift in Sources */,
 				6041285E2991004300BE1143 /* View+Extensions.swift in Sources */,
 				6041284B298FA15300BE1143 /* FileManager.swift in Sources */,
+				6007B5A329A165F5003ACB60 /* PrivacyPolicySheet.swift in Sources */,
 				60412808298DF40800BE1143 /* ContentView.swift in Sources */,
 				60412817298DFCA700BE1143 /* BudgetDashboardView.swift in Sources */,
 				6041284F298FA3AA00BE1143 /* BudgetInterval.swift in Sources */,
 				6066A07A2992462E00640BE5 /* BudgetItemCellView.swift in Sources */,
 				6066A0812992487F00640BE5 /* Theme.swift in Sources */,
+				6007B59F29A14F99003ACB60 /* SettingsItem.swift in Sources */,
+				6007B59D29A14F44003ACB60 /* SettingsView.swift in Sources */,
 				60412806298DF40800BE1143 /* friendly_sporkApp.swift in Sources */,
 				60412859299052AA00BE1143 /* AddExpenseView.swift in Sources */,
 				60412840298E26F700BE1143 /* BudgetView.swift in Sources */,
+				6007B59729A0D700003ACB60 /* BudgetHistoryView.swift in Sources */,
 				6066A0832992F8CF00640BE5 /* AddSpendItemView.swift in Sources */,
+				6007B592299F84AB003ACB60 /* SpendHistoryCell.swift in Sources */,
 				6007B58D299F5688003ACB60 /* TabBarItem.swift in Sources */,
 				6007B58B299F564E003ACB60 /* TabBarView.swift in Sources */,
 				60412847298E29BA00BE1143 /* AddBudgetView.swift in Sources */,
