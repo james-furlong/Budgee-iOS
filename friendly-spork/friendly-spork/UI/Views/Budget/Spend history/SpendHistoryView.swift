@@ -23,13 +23,11 @@ struct SpendHistoryView: View {
             Theme.Color.background.ignoresSafeArea()
             VStack {
                 HStack {
-                    VStack(alignment: .leading, spacing: 0) {
-                        Text("Spend history")
-                            .font(.system(size: 35))
-                            .bold()
-                            .foregroundColor(Theme.Color.text)
-                            .padding(.leading, 20)
-                    }
+                    Text("Spend history")
+                        .font(.system(size: 35))
+                        .bold()
+                        .foregroundColor(Theme.Color.text)
+                        .padding(.leading, 20)
                     
                     Spacer()
                     

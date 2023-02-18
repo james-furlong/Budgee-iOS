@@ -25,8 +25,20 @@ struct AddSpendItemView: View {
     
     var body: some View {
         ZStack {
+            Theme.Color.navy.opacity(0.3).ignoresSafeArea()
             VStack(spacing: 10) {
                 VStack {
+                    HStack {
+                        Text("Add spend item")
+                            .font(.system(size: 35))
+                            .bold()
+                            .foregroundColor(Theme.Color.text)
+                            .padding(.leading, 20)
+                        
+                        Spacer()
+                    }
+                    .padding(.top, 20)
+                    
                     VStack {
                         TextField("Name", text: $name)
                             .font(.system(size: 20))
@@ -77,72 +89,69 @@ struct AddSpendItemView: View {
                     .padding([.leading, .trailing, .top], 20)
                     
                     
-                    VStack {
+                    ScrollView {
                         ForEach(budget.defaultItems, id: \.id) { item in
-                            Button {
-                                itemId = item.id
-                            } label: {
-                                HStack {
-                                    Text(item.name)
-                                        .font(.system(size: 25))
-                                        .foregroundColor(Theme.Color.text)
-                                        .tag(item as BudgetItem)
-                                    
-                                    Spacer()
-                                    
-                                    if item.id == itemId {
-                                        Image(systemName: "checkmark.seal.fill")
+                            VStack {
+                                Button {
+                                    itemId = item.id
+                                } label: {
+                                    HStack {
+                                        Text(item.name)
+                                            .font(.system(size: 18))
+                                            .foregroundColor(Theme.Color.text)
+                                            .tag(item as BudgetItem)
+                                        
+                                        Spacer()
+                                        
+                                        Image(systemName: item.id == itemId ? "circle.fill" : "circle")
                                             .font(.system(size: 20))
-                                            .foregroundColor(Theme.Color.yellow)
+                                            .foregroundColor(Theme.Color.green)
                                     }
                                 }
+                                .padding()
+                                .background(Theme.Color.blue.opacity(0.6))
+                                .cornerRadius(30)
                             }
-                            .padding()
-                            .background(Theme.Color.blue.opacity(0.6))
+                            .padding([.leading, .trailing], 20)
                         }
                     }
-                    .cornerRadius(20)
-                    .padding([.leading, .trailing], 15)
-                }
-                .cornerRadius(10)
-                .padding(.bottom, 20)
-
-                Button {
-                    if let amount = amount {
-                        budget.addSpendItem(
-                            item: ExpenseItem(
-                                name: name,
-                                amount: amount,
-                                date: date
-                            ),
-                            itemId: itemId
-                        )
-                        
-                        do {
-                            try Injector.fileManager.saveOrUpdateBudget(budget: budget)
+                    .frame(height: 200)
+                    
+                    Button {
+                        if let amount = amount {
+                            budget.addSpendItem(
+                                item: ExpenseItem(
+                                    name: name,
+                                    amount: amount,
+                                    date: date
+                                ),
+                                itemId: itemId
+                            )
+                            
+                            do {
+                                try Injector.fileManager.saveOrUpdateBudget(budget: budget)
+                            }
+                            catch {
+                                Injector.log.error("Could not save expense item")
+                            }
                         }
-                        catch {
-                            Injector.log.error("Could not save expense item")
-                        }
+                        completion()
+                    } label: {
+                        Text("Add")
+                            .font(.system(size: 16))
+                            .bold()
+                            .foregroundColor(Theme.Color.text)
+                            .padding([.leading, .trailing], 40)
+                            .padding([.top, .bottom])
+                            .background(buttonColor)
+                            .clipShape(Capsule())
                     }
-                    completion()
-                } label: {
-                    Text("Add")
-                        .font(.system(size: 16))
-                        .bold()
-                        .foregroundColor(Theme.Color.text)
-                        .padding([.leading, .trailing], 40)
-                        .padding([.top, .bottom])
-                        .background(buttonColor)
-                        .clipShape(Capsule())
+                    .disabled(!buttonIsEnabled)
                 }
-                .disabled(!buttonIsEnabled)
+                Spacer()
             }
             .padding(.bottom, 20)
         }
-        .background(Theme.Color.backgroundSupp)
-        .cornerRadius(20)
-        .padding()
     }
 }
 
@@ -157,6 +166,14 @@ struct AddSpendItemView_Previews: PreviewProvider {
                     BudgetItem(
                         name: "Test Item",
                         maxValue: 100.00
+                    ),
+                    BudgetItem(
+                        name: "Test Item 2",
+                        maxValue: 100.00
+                    ),
+                    BudgetItem(
+                        name: "Test Item 3",
+                        maxValue: 100.00
                     )
                 ],
                 intervals: [
@@ -166,6 +183,14 @@ struct AddSpendItemView_Previews: PreviewProvider {
                         items: [
                             BudgetItem(
                                 name: "Test Item",
+                                maxValue: 100.00
+                            ),
+                            BudgetItem(
+                                name: "Test Item 2",
+                                maxValue: 100.00
+                            ),
+                            BudgetItem(
+                                name: "Test Item 3",
                                 maxValue: 100.00
                             )
                         ]

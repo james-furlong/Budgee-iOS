@@ -32,8 +32,9 @@ struct TabBarView: View {
                 SpendHistoryView(budgetItems: budgetItems)
                     .tag(TabBarItem.spendHistory)
                 
-                Color(.green)
-                    .ignoresSafeArea(.all, edges: .all)
+                AddSpendItemView(budget: budget) {
+                    
+                }
                     .tag(TabBarItem.add)
                 
                 BudgetHistoryView(budget: budget)

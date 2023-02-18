@@ -22,13 +22,11 @@ struct BudgetHistoryView: View {
             Theme.Color.background.ignoresSafeArea()
             VStack {
                 HStack {
-                    VStack{
-                        Text("Budget history")
-                            .font(.system(size: 35))
-                            .bold()
-                            .foregroundColor(Theme.Color.text)
-                            .padding(.leading, 20)
-                    }
+                    Text("Budget history")
+                        .font(.system(size: 35))
+                        .bold()
+                        .foregroundColor(Theme.Color.text)
+                        .padding(.leading, 20)
                     
                     Spacer()
                 }
