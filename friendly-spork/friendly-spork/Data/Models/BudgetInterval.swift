@@ -24,13 +24,13 @@ class BudgetInterval: Codable {
     
     // MARK: - Variable
     
-    private var maxAmount: Double {
+    var maxAmount: Double {
         items
             .map { $0.maximumValue }
             .reduce(0, +)
     }
     
-    private var totalAmount: Double {
+    var totalAmount: Double {
         items
             .map { $0.currentValue }
             .reduce(0, +)

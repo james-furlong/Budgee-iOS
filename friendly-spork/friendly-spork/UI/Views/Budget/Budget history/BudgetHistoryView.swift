@@ -47,7 +47,9 @@ struct BudgetHistoryView: View {
                                 .padding(.bottom, -5)
                                 
                                 VStack {
-                                    Button { } label: {
+                                    Button {
+                                        showingSheet.toggle()
+                                    } label: {
                                         HStack {
                                             VStack(alignment: .leading) {
                                                 Text(interval.amountString)
@@ -66,7 +68,7 @@ struct BudgetHistoryView: View {
                                         .cornerRadius(10)
                                     }
                                     .sheet(isPresented: $showingSheet) {
-                                        SpendHistoryView(budgetItems: interval.items)
+                                        SpendHistoryView(budgetItems: interval.items, showClose: true)
                                     }
                                     .padding([.leading, .trailing])
                                 }

@@ -118,7 +118,7 @@ struct AddBudgetView: View {
                                 }
                             }
                             .datePickerStyle(.compact)
-                            .accentColor(Theme.Color.green)
+                            .accentColor(Theme.Color.teal)
                             .padding(.trailing, 10)
                         }
                         .background(Theme.Color.background)
@@ -135,7 +135,7 @@ struct AddBudgetView: View {
                             
                             Toggle("", isOn: $oneOff)
                                 .padding(.trailing, 20)
-                                .toggleStyle(SwitchToggleStyle(tint: Theme.Color.green))
+                                .toggleStyle(SwitchToggleStyle(tint: Theme.Color.teal))
                         }
                         .background(Theme.Color.background)
                         .cornerRadius(10)
@@ -175,7 +175,7 @@ struct AddBudgetView: View {
                                     .foregroundColor(Theme.Color.textHard)
                             }
                             .padding()
-                            .background(Theme.Color.green)
+                            .background(Theme.Color.teal)
                             .cornerRadius(30)
                             .padding(.bottom, 20)
                             
@@ -224,7 +224,7 @@ struct AddBudgetView: View {
                             .foregroundColor(Theme.Color.textHard.opacity(buttonOpacity))
                             .padding([.leading, .trailing], 40)
                             .padding([.top, .bottom])
-                            .background(Theme.Color.green.opacity(buttonOpacity))
+                            .background(Theme.Color.teal.opacity(buttonOpacity))
                             .clipShape(Capsule())
                     }
                     .disabled(!buttonIsEnabled)

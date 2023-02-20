@@ -63,15 +63,20 @@ class BudgetItem: Codable {
         return "-$\(String(format: "%.2f", currentValue - maximumValue))"
     }
     
+    var progressPercent: String {
+        let perc = (currentValue / maximumValue) * 100
+        return String(format: "%.0f", perc) + "%"
+    }
+    
     var progressBarColor: Color {
         if currentValue >= maximumValue {
             return Theme.Color.red
         }
         if currentValue >= maximumValue * 0.9 {
-            return Theme.Color.yellow
+            return Theme.Color.orange
         }
         
-        return Theme.Color.blue.opacity(0.7)
+        return Theme.Color.teal
     }
     
     var progressTextColor: Color {
@@ -81,26 +86,25 @@ class BudgetItem: Codable {
         return Theme.Color.textHard
     }
     
-    var progressWidth: Double {
-        let screenWidth = UIScreen.main.bounds.width
-        if isUnderBudget {
-            let perc = currentValue / maximumValue
-            let progressWidth = screenWidth * perc
-        }
-        return screenWidth - 40.0
-    }
-    
     // MARK: - Functions
     
     func addExpense(_ item: ExpenseItem) {
         expenseItems.append(item)
-        print("HERE")
     }
     
-    func progressWidthPadding(geoWidth: Double) -> Double {
+    func progressHeightPadding(geoHeight: Double) -> Double {
+        let perc = currentValue / maximumValue // 25 / 100 = .25
+        let progressHeight = geoHeight * perc // 200 * .25 = 50
+        let padding = geoHeight - progressHeight // 200 - 50 = 150
+        if padding >= 0 {
+            return padding
+        }
+        return 0
+    }
+    
+    func progressHeight(geoHeight: Double) -> Double {
         let perc = currentValue / maximumValue
-        let progressWidth = geoWidth * perc
-        return geoWidth - progressWidth
+        return geoHeight * perc
     }
 }
 

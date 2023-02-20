@@ -16,6 +16,8 @@
 		6007B59F29A14F99003ACB60 /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6007B59E29A14F99003ACB60 /* SettingsItem.swift */; };
 		6007B5A129A1659D003ACB60 /* privacyPolicy.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6007B5A029A1659D003ACB60 /* privacyPolicy.txt */; };
 		6007B5A329A165F5003ACB60 /* PrivacyPolicySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6007B5A229A165F5003ACB60 /* PrivacyPolicySheet.swift */; };
+		6007B5A529A18B4C003ACB60 /* lazyDog.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6007B5A429A18B4C003ACB60 /* lazyDog.ttf */; };
+		6007B5A729A1D75B003ACB60 /* RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6007B5A629A1D75B003ACB60 /* RoundedCorners.swift */; };
 		60412806298DF40800BE1143 /* friendly_sporkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60412805298DF40800BE1143 /* friendly_sporkApp.swift */; };
 		60412808298DF40800BE1143 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60412807298DF40800BE1143 /* ContentView.swift */; };
 		6041280A298DF40900BE1143 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60412809298DF40900BE1143 /* Assets.xcassets */; };
@@ -37,6 +39,8 @@
 		6066A0812992487F00640BE5 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6066A0802992487F00640BE5 /* Theme.swift */; };
 		6066A0832992F8CF00640BE5 /* AddSpendItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6066A0822992F8CF00640BE5 /* AddSpendItemView.swift */; };
 		60985E1A299618C100F00401 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60985E19299618C100F00401 /* Logger.swift */; };
+		60C1C8C629A35CB50044D07B /* BudgetCircleChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C1C8C529A35CB50044D07B /* BudgetCircleChart.swift */; };
+		60C1C8C829A35EB50044D07B /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C1C8C729A35EB50044D07B /* Arc.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +53,9 @@
 		6007B59E29A14F99003ACB60 /* SettingsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItem.swift; sourceTree = "<group>"; };
 		6007B5A029A1659D003ACB60 /* privacyPolicy.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = privacyPolicy.txt; sourceTree = "<group>"; };
 		6007B5A229A165F5003ACB60 /* PrivacyPolicySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicySheet.swift; sourceTree = "<group>"; };
+		6007B5A429A18B4C003ACB60 /* lazyDog.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lazyDog.ttf; sourceTree = "<group>"; };
+		6007B5A629A1D75B003ACB60 /* RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
+		6007B5A929A1E04A003ACB60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		60412802298DF40800BE1143 /* friendly-spork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "friendly-spork.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		60412805298DF40800BE1143 /* friendly_sporkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = friendly_sporkApp.swift; sourceTree = "<group>"; };
 		60412807298DF40800BE1143 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,6 +79,8 @@
 		6066A0802992487F00640BE5 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		6066A0822992F8CF00640BE5 /* AddSpendItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSpendItemView.swift; sourceTree = "<group>"; };
 		60985E19299618C100F00401 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		60C1C8C529A35CB50044D07B /* BudgetCircleChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCircleChart.swift; sourceTree = "<group>"; };
+		60C1C8C729A35EB50044D07B /* Arc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arc.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +97,6 @@
 		6007B589299EB16F003ACB60 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				6066A07B2992465E00640BE5 /* BudgetItem */,
 				6066A07C2992467700640BE5 /* Add Expense */,
 				60412816298DFCA700BE1143 /* BudgetDashboardView.swift */,
 				6041285F2991A61000BE1143 /* BudgetCellView.swift */,
@@ -134,6 +142,16 @@
 			path = Budget;
 			sourceTree = "<group>";
 		};
+		6007B5A829A1D911003ACB60 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				60412809298DF40900BE1143 /* Assets.xcassets */,
+				6007B5A029A1659D003ACB60 /* privacyPolicy.txt */,
+				6007B5A429A18B4C003ACB60 /* lazyDog.ttf */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		604127F9298DF40800BE1143 = {
 			isa = PBXGroup;
 			children = (
@@ -153,14 +171,14 @@
 		60412804298DF40800BE1143 /* friendly-spork */ = {
 			isa = PBXGroup;
 			children = (
+				6007B5A929A1E04A003ACB60 /* Info.plist */,
 				60412814298DF48800BE1143 /* UI */,
 				60412849298FA13800BE1143 /* Data */,
 				60412855298FBB0500BE1143 /* Utils */,
+				6007B5A829A1D911003ACB60 /* Resources */,
 				60412805298DF40800BE1143 /* friendly_sporkApp.swift */,
 				60412807298DF40800BE1143 /* ContentView.swift */,
-				60412809298DF40900BE1143 /* Assets.xcassets */,
 				6041280B298DF40900BE1143 /* friendly_spork.entitlements */,
-				6007B5A029A1659D003ACB60 /* privacyPolicy.txt */,
 				6041280C298DF40900BE1143 /* Preview Content */,
 			);
 			path = "friendly-spork";
@@ -195,6 +213,7 @@
 		60412819298E052300BE1143 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6041284A298FA15300BE1143 /* FileManager.swift */,
 				6041284C298FA32F00BE1143 /* Budget.swift */,
 				6041284E298FA3AA00BE1143 /* BudgetInterval.swift */,
 				60412850298FA3B300BE1143 /* BudgetItem.swift */,
@@ -207,6 +226,9 @@
 			children = (
 				6041283F298E26F700BE1143 /* BudgetView.swift */,
 				60412846298E29BA00BE1143 /* AddBudgetView.swift */,
+				6066A0792992462E00640BE5 /* BudgetItemCellView.swift */,
+				60C1C8C529A35CB50044D07B /* BudgetCircleChart.swift */,
+				60C1C8C729A35EB50044D07B /* Arc.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -214,7 +236,6 @@
 		60412849298FA13800BE1143 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				6041284A298FA15300BE1143 /* FileManager.swift */,
 				60412852298FA3DF00BE1143 /* Enums */,
 				60412819298E052300BE1143 /* Models */,
 				6066A0802992487F00640BE5 /* Theme.swift */,
@@ -238,6 +259,7 @@
 				6041285C2991003200BE1143 /* Extensions */,
 				60412856298FBB1000BE1143 /* Injector.swift */,
 				60985E19299618C100F00401 /* Logger.swift */,
+				6007B5A629A1D75B003ACB60 /* RoundedCorners.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -248,14 +270,6 @@
 				6041285D2991004300BE1143 /* View+Extensions.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		6066A07B2992465E00640BE5 /* BudgetItem */ = {
-			isa = PBXGroup;
-			children = (
-				6066A0792992462E00640BE5 /* BudgetItemCellView.swift */,
-			);
-			path = BudgetItem;
 			sourceTree = "<group>";
 		};
 		6066A07C2992467700640BE5 /* Add Expense */ = {
@@ -334,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6007B5A129A1659D003ACB60 /* privacyPolicy.txt in Resources */,
+				6007B5A529A18B4C003ACB60 /* lazyDog.ttf in Resources */,
 				6041280E298DF40900BE1143 /* Preview Assets.xcassets in Resources */,
 				6041280A298DF40900BE1143 /* Assets.xcassets in Resources */,
 			);
@@ -348,6 +363,7 @@
 			files = (
 				60985E1A299618C100F00401 /* Logger.swift in Sources */,
 				60412854298FA3EE00BE1143 /* Invterval.swift in Sources */,
+				60C1C8C829A35EB50044D07B /* Arc.swift in Sources */,
 				6007B590299F82AC003ACB60 /* SpendHistoryView.swift in Sources */,
 				6041284D298FA32F00BE1143 /* Budget.swift in Sources */,
 				60412851298FA3B300BE1143 /* BudgetItem.swift in Sources */,
@@ -366,8 +382,10 @@
 				6007B59D29A14F44003ACB60 /* SettingsView.swift in Sources */,
 				60412806298DF40800BE1143 /* friendly_sporkApp.swift in Sources */,
 				60412859299052AA00BE1143 /* AddExpenseView.swift in Sources */,
+				6007B5A729A1D75B003ACB60 /* RoundedCorners.swift in Sources */,
 				60412840298E26F700BE1143 /* BudgetView.swift in Sources */,
 				6007B59729A0D700003ACB60 /* BudgetHistoryView.swift in Sources */,
+				60C1C8C629A35CB50044D07B /* BudgetCircleChart.swift in Sources */,
 				6066A0832992F8CF00640BE5 /* AddSpendItemView.swift in Sources */,
 				6007B592299F84AB003ACB60 /* SpendHistoryCell.swift in Sources */,
 				6007B58D299F5688003ACB60 /* TabBarItem.swift in Sources */,
@@ -501,6 +519,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "friendly-spork/Info.plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -539,6 +558,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "friendly-spork/Info.plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

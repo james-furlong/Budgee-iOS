@@ -18,7 +18,7 @@ struct AddExpenseView: View {
     }
     
     private var buttonColor: Color {
-        return buttonIsEnabled ? Theme.Color.green : Theme.Color.green.opacity(0.3)
+        return buttonIsEnabled ? Theme.Color.teal : Theme.Color.teal.opacity(0.3)
     }
     
     init(completion: @escaping (BudgetItem) -> ()) {

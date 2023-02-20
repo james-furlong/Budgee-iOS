@@ -16,4 +16,8 @@ extension View {
             .foregroundColor(Theme.Color.text)
             .padding(10)
     }
+    
+    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+        clipShape( RoundedCorners(radius: radius, corners: corners) )
+    }
 }

@@ -9,12 +9,12 @@ import SwiftUI
 
 struct SpendHistoryView: View {
     @Environment(\.dismiss) var dismiss
-    @State var budgetItems: [BudgetItem] = []
+    @State var budgetItems: [BudgetItem]
     var showClose: Bool = false
     
     
     init(budgetItems: [BudgetItem], showClose: Bool = false) {
-        self.budgetItems = budgetItems
+        _budgetItems = State(initialValue: budgetItems)
         self.showClose = showClose
     }
     

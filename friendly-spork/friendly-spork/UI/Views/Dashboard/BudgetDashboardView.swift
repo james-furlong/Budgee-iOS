@@ -32,7 +32,7 @@ struct BudgetDashboardView: View {
                         } label: {
                             Image(systemName: "plus.circle")
                                 .font(.system(size: 35))
-                                .foregroundColor(Theme.Color.green)
+                                .foregroundColor(Theme.Color.teal)
                         }
                         .padding()
                     }
@@ -61,7 +61,7 @@ struct BudgetDashboardView: View {
                         .foregroundColor(Theme.Color.textSupp)
                         .padding([.leading, .trailing], 30)
                         .padding()
-                        .background(Theme.Color.green)
+                        .background(Theme.Color.teal)
                         .cornerRadius(20)
                 }
             }

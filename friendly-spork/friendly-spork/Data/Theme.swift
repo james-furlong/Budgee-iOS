@@ -9,15 +9,15 @@ import SwiftUI
 
 public struct Theme {
     public struct Color {}
+    public struct Font {}
 }
 
 extension Theme.Color {
-    static let blue: Color = Color("Blue")
-    static let green: Color = Color("Green")
-    static let sage: Color = Color("Sage")
+    static let teal: Color = Color("Teal")
     static let navy: Color = Color("Navy")
     static let red: Color = Color("Red")
     static let yellow: Color = Color("Yellow")
+    static let orange: Color = Color("Orange")
     
     static let text: Color = Color("Text")
     static let textSupp: Color = Color("TextSupp")
@@ -26,11 +26,9 @@ extension Theme.Color {
     
     static let background: Color = Color("Background")
     static let backgroundSupp: Color = Color("BackgroundSupp")
-    
-    static let colorArray: [Color] = [
-        Theme.Color.blue,
-        Theme.Color.green,
-        Theme.Color.sage,
-        Theme.Color.navy
-    ]
+    static let backgroundCell: Color = Color("BackgroundCell")
+}
+
+extension Theme.Font {
+    static let header: Font = Font.custom("lazy_dog", size: 25)
 }
