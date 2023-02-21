@@ -17,7 +17,8 @@ struct SpendHistoryCell: View {
                 Text(budgetItem.name)
                     .font(.system(size: 16))
                     .bold()
-                    .padding([.top, .leading])
+                    .padding(.top)
+                    .padding(.leading, 40)
                 
                 Spacer()
             }
@@ -31,35 +32,29 @@ struct SpendHistoryCell: View {
                         HStack {
                             VStack(alignment: .leading) {
                                 Text(item.name)
-                                    .font(.system(size: 25))
-                                    .foregroundColor(Theme.Color.textHardSupp)
+                                    .font(.system(size: 25, weight: .semibold))
+                                    .foregroundColor(Theme.Color.text)
                                 
                                 Text(item.dateString)
-                                    .font(.system(size: 16, weight: .light))
-                                    .foregroundColor(Theme.Color.textHardSupp)
+                                    .font(.system(size: 12))
+                                    .foregroundColor(Theme.Color.text)
                             }
                             
                             Spacer()
                             
                             Text(String(format: "%.2f", item.amount))
-                                .font(.system(size: 30, weight: .heavy))
-                                .foregroundColor(Theme.Color.textHardSupp)
-                            
-                            Image(systemName: "chevron.right")
-                                .font(.system(size: 20, weight: .bold))
-                                .foregroundColor(Theme.Color.textHardSupp)
+                                .font(.system(size: 25, weight: .bold))
+                                .foregroundColor(Theme.Color.text)
                         }
                         .padding()
-                        .background(Theme.Color.navy)
-                        .cornerRadius(10)
+                        .background(Theme.Color.teal.opacity(0.5))
+                        .cornerRadius(15)
                     }
                 }
                 .padding([.leading, .trailing])
             }
             .padding(.bottom, 25)
         }
-        .background(Theme.Color.backgroundSupp)
-        .cornerRadius(10)
     }
 }
 

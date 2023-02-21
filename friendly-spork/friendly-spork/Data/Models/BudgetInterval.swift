@@ -44,7 +44,10 @@ class BudgetInterval: Codable {
     }
     
     var amountString: String {
-        "$" + String(format: "%.2f", totalAmount) + " / " + "$" + String(format: "%.2f", maxAmount)
+        if totalAmount > maxAmount {
+            return "+$\(totalAmount - maxAmount)"
+        }
+        return "-$\(maxAmount - totalAmount)"
     }
 }
 

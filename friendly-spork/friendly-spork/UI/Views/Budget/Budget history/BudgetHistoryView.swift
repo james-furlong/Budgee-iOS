@@ -14,6 +14,9 @@ struct BudgetHistoryView: View {
             .intervals
             .sorted(by: { $0.startDateTime > $1.startDateTime })
     }
+    private var totalAmount: Double { budget.currentInterval?.totalAmount ?? 0.0 }
+    private var maxAmount: Double { budget.currentInterval?.maxAmount ?? 0.0 }
+    
     @State var currentInterval: BudgetInterval!
     @State var showingSheet: Bool = false
     
@@ -21,67 +24,83 @@ struct BudgetHistoryView: View {
         ZStack {
             Theme.Color.background.ignoresSafeArea()
             VStack {
+                Image("home-background")
+                    .resizable()
+                    .ignoresSafeArea()
+                    .frame(height: 250)
+                
+                Spacer()
+            }
+            
+            VStack(spacing: 10) {
                 HStack {
                     Text("Budget history")
-                        .font(.system(size: 35))
-                        .bold()
-                        .foregroundColor(Theme.Color.text)
+                        .font(.system(size: 40, weight: .heavy))
+                        .foregroundColor(Theme.Color.textHard)
                         .padding(.leading, 20)
                     
                     Spacer()
                 }
-                .padding(.top, 20)
+                .padding(.top, 100)
                 
-                ScrollView {
-                    VStack {
-                        ForEach(intervals, id: \.self) { interval in
-                            VStack {
-                                HStack {
-                                    Text(interval.intervalTitle)
-                                        .font(.system(size: 16))
-                                        .bold()
-                                        .padding([.top, .leading])
-                                    
-                                    Spacer()
-                                }
-                                .padding(.bottom, -5)
-                                
+                VStack {
+                    ScrollView {
+                        VStack {
+                            ForEach(intervals, id: \.self) { interval in
                                 VStack {
-                                    Button {
-                                        showingSheet.toggle()
-                                    } label: {
-                                        HStack {
-                                            VStack(alignment: .leading) {
-                                                Text(interval.amountString)
-                                                    .font(.system(size: 25))
-                                                    .foregroundColor(Theme.Color.textHardSupp)
+                                    
+                                    
+                                    VStack {
+                                        Button {
+                                            showingSheet.toggle()
+                                        } label: {
+                                            HStack {
+                                                VStack(alignment: .leading) {
+                                                    HStack {
+                                                        VStack(alignment: .leading) {
+                                                            Text(interval.intervalTitle)
+                                                                .font(.system(size: 16))
+                                                                .foregroundColor(Theme.Color.text)
+                                                                .bold()
+                                                                .padding(.bottom, 2)
+                                                            
+                                                            Text(interval.amountString)
+                                                                .font(.system(size: 25))
+                                                                .foregroundColor(Theme.Color.text)
+                                                        }
+                                                        
+                                                        Spacer()
+                                                        
+                                                        Text(String(format: "%.0f", (totalAmount / maxAmount) * 100) + "%")
+                                                            .font(.system(size: 35, weight: .bold))
+                                                            .foregroundColor(Theme.Color.text)
+                                                    }
+                                                    
+                                                    ProgressBarView(
+                                                        totalAmount: totalAmount,
+                                                        maxAmount: maxAmount
+                                                    )
+                                                }
                                             }
-                                            
-                                            Spacer()
-                                            
-                                            Image(systemName: "chevron.right")
-                                                .font(.system(size: 20, weight: .bold))
-                                                .foregroundColor(Theme.Color.textHardSupp)
+                                            .padding()
+                                            .background(Theme.Color.teal.opacity(0.2))
+                                            .cornerRadius(10)
                                         }
-                                        .padding()
-                                        .background(Theme.Color.navy)
-                                        .cornerRadius(10)
+                                        .sheet(isPresented: $showingSheet) {
+                                            SpendHistoryView(budgetItems: interval.items, showClose: true)
+                                        }
+                                        .padding([.leading, .trailing], 10)
                                     }
-                                    .sheet(isPresented: $showingSheet) {
-                                        SpendHistoryView(budgetItems: interval.items, showClose: true)
-                                    }
-                                    .padding([.leading, .trailing])
+                                    .padding(.vertical, 15)
                                 }
-                                .padding(.bottom, 25)
                             }
                         }
+                        .cornerRadius(10)
+                        .padding()
                     }
-                    .background(Theme.Color.backgroundSupp)
-                    .cornerRadius(10)
-                    .padding()
+                    .background(Theme.Color.background)
+                    .cornerRadius(15, corners: [.topLeft, .topRight])
                 }
-                
-                Spacer()
             }
         }
     }

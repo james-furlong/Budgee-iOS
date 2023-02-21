@@ -41,6 +41,7 @@
 		60985E1A299618C100F00401 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60985E19299618C100F00401 /* Logger.swift */; };
 		60C1C8C629A35CB50044D07B /* BudgetCircleChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C1C8C529A35CB50044D07B /* BudgetCircleChart.swift */; };
 		60C1C8C829A35EB50044D07B /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C1C8C729A35EB50044D07B /* Arc.swift */; };
+		60C7915129A4BEDE008619DB /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C7915029A4BEDE008619DB /* ProgressBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 		60985E19299618C100F00401 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		60C1C8C529A35CB50044D07B /* BudgetCircleChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCircleChart.swift; sourceTree = "<group>"; };
 		60C1C8C729A35EB50044D07B /* Arc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arc.swift; sourceTree = "<group>"; };
+		60C7915029A4BEDE008619DB /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				6007B59629A0D700003ACB60 /* BudgetHistoryView.swift */,
+				60C7915029A4BEDE008619DB /* ProgressBarView.swift */,
 			);
 			path = "Budget history";
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				60412857298FBB1000BE1143 /* Injector.swift in Sources */,
 				6041285B2990AD8100BE1143 /* ExpenseView.swift in Sources */,
 				6041285E2991004300BE1143 /* View+Extensions.swift in Sources */,
+				60C7915129A4BEDE008619DB /* ProgressBarView.swift in Sources */,
 				6041284B298FA15300BE1143 /* FileManager.swift in Sources */,
 				6007B5A329A165F5003ACB60 /* PrivacyPolicySheet.swift in Sources */,
 				60412808298DF40800BE1143 /* ContentView.swift in Sources */,

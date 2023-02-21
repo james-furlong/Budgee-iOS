@@ -44,8 +44,6 @@ struct BudgetView: View {
                 }
                 .padding(.top, 100)
                 
-                
-                
                 VStack {
                     BudgetCircleChart(budget: budget)
                         .padding([.leading, .trailing], 80)

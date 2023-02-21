@@ -22,42 +22,37 @@ struct SpendHistoryView: View {
         ZStack {
             Theme.Color.background.ignoresSafeArea()
             VStack {
+                Image("home-background")
+                    .resizable()
+                    .ignoresSafeArea()
+                    .frame(height: 250)
+                
+                Spacer()
+            }
+            
+            VStack(spacing: 10) {
                 HStack {
                     Text("Spend history")
-                        .font(.system(size: 35))
-                        .bold()
-                        .foregroundColor(Theme.Color.text)
+                        .font(.system(size: 40, weight: .heavy))
+                        .foregroundColor(Theme.Color.textHard)
                         .padding(.leading, 20)
                     
                     Spacer()
-                    
-                    if showClose {
-                        Button {
-                            dismiss()
-                        } label: {
-                            Image(systemName: "chevron.down")
-                                .font(.system(size: 25, weight: .semibold))
-                                .foregroundColor(Theme.Color.navy)
-                        }
-                        .padding(.trailing)
-                    }
                 }
-                .padding(.top, 20)
+                .padding(.top, 100)
                 
-                VStack(spacing: 5) {
+                VStack {
                     ScrollView {
                         ForEach(budgetItems, id: \.self) { item in
                             SpendHistoryCell(budgetItem: item) { _ in }
-                                .padding(.bottom, 20)
+                                .padding(.bottom, -20)
                         }
                         .padding(.bottom, 10)
                     }
                     .padding(.bottom)
                 }
-                .cornerRadius(10)
-                .padding()
-                
-                Spacer()
+                .background(Theme.Color.background)
+                .cornerRadius(15, corners: [.topLeft, .topRight])
             }
         }
     }
