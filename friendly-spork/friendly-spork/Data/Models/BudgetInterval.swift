@@ -40,7 +40,7 @@ class BudgetInterval: Codable {
         let formatter: DateFormatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
         
-        return formatter.string(from: startDateTime) + " - " + formatter.string(from: endDateTime)
+        return formatter.string(from: endDateTime)
     }
     
     var amountString: String {

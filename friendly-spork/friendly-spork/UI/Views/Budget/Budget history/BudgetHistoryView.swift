@@ -48,8 +48,6 @@ struct BudgetHistoryView: View {
                         VStack {
                             ForEach(intervals, id: \.self) { interval in
                                 VStack {
-                                    
-                                    
                                     VStack {
                                         Button {
                                             showingSheet.toggle()
