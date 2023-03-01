@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct BudgetDashboardView: View {
-    @State var budgets = Injector.fileManager.retrieveBudgets()
+//    @State var budgets = Injector.fileManager.retrieveBudgets()
+    @State var budgets = Theme.Constants.budgets
     @State var currentBudget: Budget!
     @State var budgetShowing: Bool = false
     @State var addBudgetShowing: Bool = false
@@ -17,7 +18,7 @@ struct BudgetDashboardView: View {
         ZStack {
             Theme.Color.background.ignoresSafeArea()
             VStack {
-                VStack(spacing: 0) {
+                VStack(alignment: .leading, spacing: 0) {
                     HStack {
                         Text("Budgets")
                             .font(.system(size: 35))
@@ -37,15 +38,42 @@ struct BudgetDashboardView: View {
                         .padding()
                     }
                     
-                    ForEach(budgets, id: \.self) { budget in
-                        BudgetCellView(budget: budget)
-                            .gesture(
-                                TapGesture()
-                                    .onEnded {
-                                        currentBudget = budget
-                                        budgetShowing = true
-                                    }
-                            )
+                    if !budgets.filter { $0.isActive }.isEmpty {
+                        Text("Active budgets")
+                            .font(.system(size: 16))
+                            .foregroundColor(Theme.Color.text)
+                            .padding(.leading, 20)
+                            .padding(.bottom, -10)
+                        
+                        ForEach(budgets.filter { $0.isActive }, id: \.self) { budget in
+                            BudgetCellView(budget: budget)
+                                .gesture(
+                                    TapGesture()
+                                        .onEnded {
+                                            currentBudget = budget
+                                            budgetShowing = true
+                                        }
+                                )
+                        }
+                    }
+                    
+                    if !budgets.filter { !$0.isActive }.isEmpty {
+                        Text("Inactive budgets")
+                            .font(.system(size: 16))
+                            .foregroundColor(Theme.Color.text)
+                            .padding(.leading, 20)
+                            .padding(.bottom, -10)
+                        
+                        ForEach(budgets.filter { !$0.isActive }, id: \.self) { budget in
+                            BudgetCellView(budget: budget)
+                                .gesture(
+                                    TapGesture()
+                                        .onEnded {
+                                            currentBudget = budget
+                                            budgetShowing = true
+                                        }
+                                )
+                        }
                     }
                     
                     Spacer()
@@ -69,7 +97,7 @@ struct BudgetDashboardView: View {
             if addBudgetShowing {
                 AddBudgetView {
                     addBudgetShowing = false
-                    budgets = Injector.fileManager.retrieveBudgets()
+                    budgets = Theme.Constants.budgets//Injector.fileManager.retrieveBudgets()
                 }
                 .transition(.slide)
             }

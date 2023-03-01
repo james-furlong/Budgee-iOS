@@ -14,24 +14,22 @@ class Budget: Codable, ObservableObject {
     var defaultItems: [BudgetItem]
     var intervals: [BudgetInterval]
     let oneOff: Bool
+    var isActive: Bool
     
     // MARK: - Initialization
     
-    init(id: String, name: String, intervalType: Interval, defaultItems: [BudgetItem], intervals: [BudgetInterval], oneOff: Bool) {
+    init(id: String, name: String, intervalType: Interval, defaultItems: [BudgetItem], intervals: [BudgetInterval], oneOff: Bool, isActive: Bool = true) {
         self.id = id
         self.name = name
         self.intervalType = intervalType
         self.defaultItems = defaultItems
         self.intervals = intervals
         self.oneOff = oneOff
+        self.isActive = isActive
     }
     
-    var statusTitle: String {
-        if isUnderBudget {
-            return "Under budget"
-        }
-        
-        return "Over budget!"
+    var expenseCountTitle: String {
+        return "\(defaultItems.count) expense categories"
     }
     
     var isUnderBudget: Bool {
@@ -43,6 +41,10 @@ class Budget: Codable, ObservableObject {
         }
         
         return true
+    }
+    
+    var activeText: String {
+        return isActive ? "Active" : "Inactive"
     }
     
     var currentInterval: BudgetInterval? {
@@ -62,6 +64,10 @@ class Budget: Codable, ObservableObject {
         catch {
             Injector.log.error("Couldn't save spend item")
         }
+    }
+    
+    public func toggleActiveState(_ isActive: Bool) {
+        self.isActive = isActive
     }
 }
 
