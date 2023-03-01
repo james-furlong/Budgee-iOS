@@ -71,47 +71,7 @@ struct BudgetView: View {
 }
 
 struct BudgetView_Previews: PreviewProvider {
-    static let budget = Budget(
-        id: "TestID",
-        name: "Test Budget",
-        intervalType: .monthly,
-        defaultItems: [
-            BudgetItem(
-                name: "Test Item",
-                maxValue: 100.00
-            )
-        ],
-        intervals: [
-            BudgetInterval(
-                startDateTime: Date(),
-                endDateTime: Calendar.current.date(byAdding: .month, value: 1, to: Date()) ?? Date(),
-                items: [
-                    BudgetItem(
-                        name: "Food",
-                        maxValue: 100.00,
-                        items: [
-                            ExpenseItem(name: "", amount: 50.0, date: Date())
-                        ]
-                    ),
-                    BudgetItem(
-                        name: "Entertainment",
-                        maxValue: 100.00,
-                        items: [
-                            ExpenseItem(name: "", amount: 91.0, date: Date())
-                        ]
-                    ),
-                    BudgetItem(
-                        name: "Fuel",
-                        maxValue: 100.00,
-                        items: [
-                            ExpenseItem(name: "", amount: 105.0, date: Date())
-                        ]
-                    )
-                ]
-            )
-        ],
-        oneOff: true
-    )
+    static let budget = Theme.Constants.budget
     
     static var previews: some View {
         BudgetView(budget: budget, budgetItems: budget.currentInterval?.items ?? [])

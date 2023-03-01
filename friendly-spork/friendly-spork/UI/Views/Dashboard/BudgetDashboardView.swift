@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct BudgetDashboardView: View {
-//    @State var budgets = Injector.fileManager.retrieveBudgets()
-    @State var budgets = Theme.Constants.budgets
+    @State var budgets = Injector.fileManager.retrieveBudgets()
     @State var currentBudget: Budget!
     @State var budgetShowing: Bool = false
     @State var addBudgetShowing: Bool = false
@@ -18,24 +17,56 @@ struct BudgetDashboardView: View {
         ZStack {
             Theme.Color.background.ignoresSafeArea()
             VStack {
-                VStack(alignment: .leading, spacing: 0) {
-                    HStack {
-                        Text("Budgets")
+                Image("home-background")
+                    .resizable()
+                    .ignoresSafeArea()
+                    .frame(height: 250)
+                
+                Spacer()
+            }
+            
+            VStack(spacing: 10) {
+                HStack {
+                    Text("Budgee")
+                        .font(.system(size: 50, weight: .bold))
+                        .foregroundColor(Theme.Color.textHard)
+                        .padding(.leading, 20)
+                    
+                    Spacer()
+                    
+                    Button {
+                        addBudgetShowing = true
+                    } label: {
+                        Image(systemName: "plus.circle")
                             .font(.system(size: 35))
-                            .bold()
-                            .foregroundColor(Theme.Color.text)
-                            .padding(.leading, 20)
-                        
+                            .foregroundColor(Theme.Color.textHard)
+                    }
+                    .padding()
+                }
+                
+                VStack(alignment: .leading, spacing: 0) {
+                    if budgets.isEmpty {
                         Spacer()
                         
-                        Button {
-                            addBudgetShowing = true
-                        } label: {
-                            Image(systemName: "plus.circle")
-                                .font(.system(size: 35))
-                                .foregroundColor(Theme.Color.teal)
+                        HStack {
+                            Spacer ()
+                            
+                            Button {
+                                addBudgetShowing = true
+                            } label: {
+                                Text("Add initital budget")
+                                    .font(.system(size: 25))
+                                    .foregroundColor(Theme.Color.textSupp)
+                                    .padding([.leading, .trailing], 30)
+                                    .padding()
+                                    .background(Theme.Color.teal)
+                                    .cornerRadius(20)
+                            }
+                            
+                            Spacer()
                         }
-                        .padding()
+                        
+                        Spacer()
                     }
                     
                     if !budgets.filter { $0.isActive }.isEmpty {
@@ -78,26 +109,15 @@ struct BudgetDashboardView: View {
                     
                     Spacer()
                 }
-            }
-            
-            if budgets.isEmpty {
-                Button {
-                    addBudgetShowing = true
-                } label: {
-                    Text("Add initital budget")
-                        .font(.system(size: 25))
-                        .foregroundColor(Theme.Color.textSupp)
-                        .padding([.leading, .trailing], 30)
-                        .padding()
-                        .background(Theme.Color.teal)
-                        .cornerRadius(20)
-                }
+                .padding(.top, 30)
+                .background(Theme.Color.background)
+                .cornerRadius(15, corners: [.topLeft, .topRight])
             }
             
             if addBudgetShowing {
                 AddBudgetView {
                     addBudgetShowing = false
-                    budgets = Theme.Constants.budgets//Injector.fileManager.retrieveBudgets()
+                    budgets = Injector.fileManager.retrieveBudgets()
                 }
                 .transition(.slide)
             }
