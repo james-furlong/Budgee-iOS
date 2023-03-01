@@ -30,6 +30,13 @@ class BudgetItem: Codable {
         self.expenseItems = []
     }
     
+    init(name: String, maxValue: Double, items: [ExpenseItem]) {
+        self.id = UUID().uuidString
+        self.name = name
+        self.maximumValue = maxValue
+        self.expenseItems = items
+    }
+    
     // MARK: - Computed values
     
     var currentValue: Double {
@@ -49,21 +56,55 @@ class BudgetItem: Codable {
         return "-$\(String(format: "%.2f", currentValue - maximumValue))"
     }
     
-    var progressColor: Color {
-        if !isUnderBudget {
+    var currentAmount: String {
+        if isUnderBudget {
+            return "$\(String(format: "%.2f", maximumValue - currentValue))"
+        }
+        return "-$\(String(format: "%.2f", currentValue - maximumValue))"
+    }
+    
+    var progressPercent: String {
+        let perc = (currentValue / maximumValue) * 100
+        return String(format: "%.0f", perc) + "%"
+    }
+    
+    var progressBarColor: Color {
+        if currentValue >= maximumValue {
             return Theme.Color.red
         }
-        if (maximumValue - currentValue) >= (maximumValue * 0.90) {
-            return Theme.Color.sage
+        if currentValue >= maximumValue * 0.9 {
+            return Theme.Color.orange
         }
         
-        return Theme.Color.green
+        return Theme.Color.teal
+    }
+    
+    var progressTextColor: Color {
+        if currentValue >= maximumValue {
+            return Theme.Color.textHardSupp
+        }
+        return Theme.Color.textHard
     }
     
     // MARK: - Functions
     
     func addExpense(_ item: ExpenseItem) {
         expenseItems.append(item)
+    }
+    
+    func progressHeightPadding(geoHeight: Double) -> Double {
+        let perc = currentValue / maximumValue // 25 / 100 = .25
+        let progressHeight = geoHeight * perc // 200 * .25 = 50
+        let padding = geoHeight - progressHeight // 200 - 50 = 150
+        if padding >= 0 {
+            return padding
+        }
+        return 0
+    }
+    
+    func progressHeight(geoHeight: Double) -> Double {
+        let perc = currentValue / maximumValue
+        return geoHeight * perc
     }
 }
 
@@ -84,4 +125,12 @@ extension BudgetItem: Hashable {
 struct ExpenseItem: Codable, Hashable {
     let name: String
     let amount: Double
+    let date: Date
+    
+    var dateString: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy"
+        
+        return formatter.string(from: date)
+    }
 }
