@@ -34,14 +34,16 @@ struct BudgetDashboardView: View {
                     
                     Spacer()
                     
-                    Button {
-                        addBudgetShowing = true
-                    } label: {
-                        Image(systemName: "plus.circle")
-                            .font(.system(size: 35))
-                            .foregroundColor(Theme.Color.textHard)
+                    if !budgets.isEmpty {
+                        Button {
+                            addBudgetShowing = true
+                        } label: {
+                            Image(systemName: "plus.circle")
+                                .font(.system(size: 35))
+                                .foregroundColor(Theme.Color.textHard)
+                        }
+                        .padding()
                     }
-                    .padding()
                 }
                 
                 VStack(alignment: .leading, spacing: 0) {
