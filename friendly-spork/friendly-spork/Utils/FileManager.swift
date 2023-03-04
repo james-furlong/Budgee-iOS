@@ -24,45 +24,64 @@ class FileManagerWrapper {
     }
     
     func saveOrUpdateBudget(budget: Budget) throws {
-        guard let url: URL = makeUrlFor(budget: budget) else {
-            throw Error.invalidDirectory
+        let wrapper = retrieveBudgetWrapper()
+        if let index = wrapper.budgets.firstIndex(where: { $0.id == budget.id }) {
+            wrapper.budgets[index] = budget
+        }
+        else {
+            wrapper.budgets.append(budget)
+        }
+        
+        saveBudgetWrapper(wrapper: wrapper)
+    }
+    
+    func retrieveBudgets() -> [Budget] {
+        let wrapper = retrieveBudgetWrapper()
+        return wrapper.budgets
+    }
+            
+    // MARK: - Internal functions
+    
+    private func saveBudgetWrapper(wrapper: BudgetWrapper) {
+        guard let url: URL = makeUrlFor(budget: wrapper) else {
+            Injector.log.error("Unable to create URL for budget wrapper: \(wrapper.id)")
+            return
         }
         
         do {
-            let data: Data = try JSONEncoder().encode(budget)
+            let data: Data = try JSONEncoder().encode(wrapper)
             try? fileManager.removeItem(at: url)
             try data.write(to: url)
         }
         catch {
-            Injector.log.error(error.localizedDescription)
-            throw Error.writingFailed
+            Injector.log.error("Unable to write wrapper to disk: \(error.localizedDescription)")
+            return
         }
+        return
     }
     
-    func retrieveBudgets() -> [Budget] {
-        var budgetArray: [Budget] = []
+    private func retrieveBudgetWrapper() -> BudgetWrapper {
         guard let documentUrl = retrieveDirectoryUrl() else {
-            return []
+            return BudgetWrapper()
         }
         
         let path = documentUrl.absoluteURL
-        do {
-            let directoryContents = try fileManager.contentsOfDirectory(at: path, includingPropertiesForKeys: nil, options: [])
-            try directoryContents.forEach { fileUrl in
-                let fileData = try Data(contentsOf: fileUrl)
-                let budget = try JSONDecoder().decode(Budget.self, from: fileData)
-                budgetArray.append(budget)
+        if fileManager.fileExists(atPath: path.absoluteString) {
+            do {
+                let wrapperData = try Data(contentsOf: path)
+                let wrapper = try JSONDecoder().decode(BudgetWrapper.self, from: wrapperData)
+                return wrapper
+            }
+            catch {
+                Injector.log.error(error.localizedDescription)
+                return BudgetWrapper()
             }
         }
-        catch {
-            Injector.log.error(error.localizedDescription)
-            return []
-        }
         
-        return budgetArray
+        return BudgetWrapper()
     }
-            
-    private func makeUrlFor(budget: Budget) -> URL? {
+    
+    private func makeUrlFor(budget: BudgetWrapper) -> URL? {
         let fileName = budget.id
         guard let url: URL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
             return nil

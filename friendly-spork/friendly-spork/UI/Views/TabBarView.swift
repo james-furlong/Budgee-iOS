@@ -8,33 +8,23 @@
 import SwiftUI
 
 struct TabBarView: View {
+    @EnvironmentObject var budget: Budget
     
-    @State var budget: Budget
-    @State var budgetItems: [BudgetItem]
     @State private var selectedTab: TabBarItem = .home
-    @State var isShowingAddExpense: Bool
+    @State var isShowingAddExpense: Bool = false
     
     let completion: () -> ()
-    
-    init(budget: Budget, completion: @escaping () -> Void) {
-        self.budget = budget
-        self.budgetItems = budget.currentInterval?.items ?? []
-        self.isShowingAddExpense = false
-        self.completion = completion
-    }
     
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
             TabView(selection: $selectedTab) {
-                BudgetView(budget: budget, budgetItems: budgetItems)
+                BudgetView(budget: budget)
                     .tag(TabBarItem.home)
                 
-                SpendHistoryView(budgetItems: budgetItems)
+                SpendHistoryView(budget: budget)
                     .tag(TabBarItem.spendHistory)
                 
-                AddSpendItemView(budget: budget) {
-                    
-                }
+                AddSpendItemView(budget: budget) {}
                     .tag(TabBarItem.add)
                 
                 BudgetHistoryView(budget: budget)
@@ -48,7 +38,12 @@ struct TabBarView: View {
                 ForEach(TabBarItem.allCases, id: \.self) { item in
                     GeometryReader { geo in
                         Button {
-                            selectedTab = item
+                            if item == .add {
+                                isShowingAddExpense = true
+                            }
+                            else {
+                                selectedTab = item
+                            }
                         } label: {
                             item.icon
                                 .resizable()
@@ -81,13 +76,9 @@ struct TabBarView: View {
             
             if isShowingAddExpense {
                 AddSpendItemView(budget: budget) {
-                    let budgetId = budget.id
-                    if let newBudget = Injector.fileManager.retrieveBudgets().first(where: { $0.id == budgetId }) {
-                        budget = newBudget
-                        budgetItems = newBudget.currentInterval?.items ?? []
-                    }
                     isShowingAddExpense = false
                 }
+                .transition(.move(edge: .bottom))
             }
         }
     }
@@ -95,48 +86,6 @@ struct TabBarView: View {
 
 struct TabBarView_Previews: PreviewProvider {
     static var previews: some View {
-        TabBarView(budget: Budget(
-            id: "TestID",
-            name: "Test Budget",
-            intervalType: .monthly,
-            defaultItems: [
-                BudgetItem(
-                    name: "Test Item",
-                    maxValue: 100.00
-                )
-            ],
-            intervals: [
-                BudgetInterval(
-                    startDateTime: Date(),
-                    endDateTime: Calendar.current.date(byAdding: .month, value: 1, to: Date()) ?? Date(),
-                    items: [
-                        BudgetItem(
-                            name: "Food",
-                            maxValue: 100.00,
-                            items: [
-                                ExpenseItem(name: "Coles", amount: 45.0, date: Date()),
-                                ExpenseItem(name: "McDonalds", amount: 5.0, date: Date())
-                            ]
-                        ),
-                        BudgetItem(
-                            name: "Entertainment",
-                            maxValue: 100.00,
-                            items: [
-                                ExpenseItem(name: "Movies", amount: 50.0, date: Date()),
-                                ExpenseItem(name: "Mini golf", amount: 40.0, date: Date())
-                            ]
-                        ),
-                        BudgetItem(
-                            name: "Fuel",
-                            maxValue: 100.00,
-                            items: [
-                                ExpenseItem(name: "BP", amount: 105.0, date: Date())
-                            ]
-                        )
-                    ]
-                )
-            ],
-            oneOff: true
-        )) { }
+        TabBarView() { }.environmentObject(Theme.Constants.budget)
     }
 }

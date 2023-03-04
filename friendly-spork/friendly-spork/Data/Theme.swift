@@ -41,7 +41,15 @@ extension Theme.Constants {
         intervalType: .monthly,
         defaultItems: [
             BudgetItem(
-                name: "Test Item",
+                name: "Food",
+                maxValue: 100.00
+            ),
+            BudgetItem(
+                name: "Entertainment",
+                maxValue: 100.00
+            ),
+            BudgetItem(
+                name: "Fuel",
                 maxValue: 100.00
             )
         ],
@@ -54,21 +62,23 @@ extension Theme.Constants {
                         name: "Food",
                         maxValue: 100.00,
                         items: [
-                            ExpenseItem(name: "", amount: 50.0, date: Date())
+                            ExpenseItem(name: "Coles", amount: 45.0, date: Date()),
+                            ExpenseItem(name: "McDonalds", amount: 5.0, date: Date())
                         ]
                     ),
                     BudgetItem(
                         name: "Entertainment",
                         maxValue: 100.00,
                         items: [
-                            ExpenseItem(name: "", amount: 91.0, date: Date())
+                            ExpenseItem(name: "Movies", amount: 50.0, date: Date()),
+                            ExpenseItem(name: "Mini golf", amount: 40.0, date: Date())
                         ]
                     ),
                     BudgetItem(
                         name: "Fuel",
                         maxValue: 100.00,
                         items: [
-                            ExpenseItem(name: "", amount: 95.0, date: Date())
+                            ExpenseItem(name: "BP", amount: 105.0, date: Date())
                         ]
                     )
                 ]

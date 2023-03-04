@@ -116,18 +116,35 @@ struct BudgetDashboardView: View {
                 .cornerRadius(15, corners: [.topLeft, .topRight])
             }
             
-            if addBudgetShowing {
-                AddBudgetView {
-                    addBudgetShowing = false
-                    budgets = Injector.fileManager.retrieveBudgets()
+            VStack {
+                if addBudgetShowing {
+                    Color.black.opacity(0.3)
+                        .ignoresSafeArea()
+                        .transition(.opacity)
                 }
-                .transition(.slide)
+            }
+            .animation(.default, value: addBudgetShowing)
+            .onTapGesture {
+                addBudgetShowing = false
             }
             
-            if budgetShowing {
-                TabBarView(budget: currentBudget) {
-                    budgetShowing = false
+            VStack {
+                if addBudgetShowing {
+                    AddBudgetView {
+                        addBudgetShowing = false
+                        budgets = Injector.fileManager.retrieveBudgets()
+                    }
+                    .padding(.top, 50)
+                    .ignoresSafeArea(edges: .bottom)
+                    .transition(.move(edge: .bottom))
                 }
+            }
+            .animation(.default, value: addBudgetShowing)
+            
+            if budgetShowing {
+                TabBarView() {
+                    budgetShowing = false
+                }.environmentObject(currentBudget)
             }
         }
     }

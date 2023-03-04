@@ -216,7 +216,6 @@
 		60412819298E052300BE1143 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				6041284A298FA15300BE1143 /* FileManager.swift */,
 				6041284C298FA32F00BE1143 /* Budget.swift */,
 				6041284E298FA3AA00BE1143 /* BudgetInterval.swift */,
 				60412850298FA3B300BE1143 /* BudgetItem.swift */,
@@ -260,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				6041285C2991003200BE1143 /* Extensions */,
+				6041284A298FA15300BE1143 /* FileManager.swift */,
 				60412856298FBB1000BE1143 /* Injector.swift */,
 				60985E19299618C100F00401 /* Logger.swift */,
 				6007B5A629A1D75B003ACB60 /* RoundedCorners.swift */,

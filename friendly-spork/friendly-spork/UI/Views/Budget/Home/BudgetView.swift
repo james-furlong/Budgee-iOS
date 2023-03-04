@@ -8,18 +8,12 @@
 import SwiftUI
 
 struct BudgetView: View {
-    @State var budget: Budget
-    @State var budgetItems: [BudgetItem]
+    @ObservedObject var budget: Budget
     
     private let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
-    
-    init(budget: Budget, budgetItems: [BudgetItem]) {
-        self.budget = budget
-        self.budgetItems = budgetItems
-    }
     
     var body: some View {
         ZStack {
@@ -42,7 +36,7 @@ struct BudgetView: View {
                     
                     Spacer()
                 }
-                .padding(.top, 100)
+                .padding(.top, 20)
                 
                 VStack {
                     BudgetCircleChart(budget: budget)
@@ -52,8 +46,8 @@ struct BudgetView: View {
                         ScrollView {
                             VStack(spacing: 5) {
                                 LazyVGrid(columns: columns, spacing: geo.size.width / 2.5) {
-                                    ForEach(budgetItems.indices, id: \.self) { i in
-                                        BudgetItemCellView(item: self.$budgetItems[i])
+                                    ForEach(budget.currentInterval?.items ?? [], id: \.self) { item in
+                                        BudgetItemCellView(item: item)
                                     }
                                 }
                                 .padding([.trailing, .leading], 15)
@@ -74,6 +68,6 @@ struct BudgetView_Previews: PreviewProvider {
     static let budget = Theme.Constants.budget
     
     static var previews: some View {
-        BudgetView(budget: budget, budgetItems: budget.currentInterval?.items ?? [])
+        BudgetView(budget: budget)
     }
 }
