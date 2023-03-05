@@ -25,14 +25,14 @@ struct BudgetCircleChart: View {
         ZStack {
             Arc(startAngle: .degrees(0), endAngle: .degrees(220), clockwise: true)
                 .stroke(
-                    Theme.Color.teal.opacity(0.2),
+                    Theme.Color.teal20,
                     style: StrokeStyle(lineWidth: 30, lineCap: .round)
                 )
                 .padding()
             
             Arc(startAngle: .degrees(0), endAngle: .degrees(endAngle), clockwise: true)
                 .stroke(
-                    Theme.Color.teal,
+                    Theme.Color.teal100,
                     style: StrokeStyle(lineWidth: 30, lineCap: .round)
                 )
                 .padding()

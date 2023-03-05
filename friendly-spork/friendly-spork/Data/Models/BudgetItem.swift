@@ -76,7 +76,7 @@ class BudgetItem: Codable {
             return Theme.Color.orange
         }
         
-        return Theme.Color.teal
+        return Theme.Color.teal100
     }
     
     var progressTextColor: Color {

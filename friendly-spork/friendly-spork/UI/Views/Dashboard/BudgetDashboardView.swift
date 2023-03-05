@@ -61,7 +61,7 @@ struct BudgetDashboardView: View {
                                     .foregroundColor(Theme.Color.textSupp)
                                     .padding([.leading, .trailing], 30)
                                     .padding()
-                                    .background(Theme.Color.teal)
+                                    .background(Theme.Color.teal100)
                                     .cornerRadius(20)
                             }
                             

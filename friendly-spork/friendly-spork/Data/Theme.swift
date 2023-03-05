@@ -14,17 +14,25 @@ public struct Theme {
 }
 
 extension Theme.Color {
-    static let teal: Color = Color("Teal")
+    // Main
     static let navy: Color = Color("Navy")
     static let red: Color = Color("Red")
     static let yellow: Color = Color("Yellow")
     static let orange: Color = Color("Orange")
     
+    // Teal
+    static let teal100: Color = Color("Teal100")
+    static let teal70: Color = Color("Teal70")
+    static let teal40: Color = Color("Teal40")
+    static let teal20: Color = Color("Teal20")
+    
+    // Text
     static let text: Color = Color("Text")
     static let textSupp: Color = Color("TextSupp")
     static let textHard: Color = Color("TextHard")
     static let textHardSupp: Color = Color("TextHardSupp")
     
+    // Background
     static let background: Color = Color("Background")
     static let backgroundSupp: Color = Color("BackgroundSupp")
     static let backgroundCell: Color = Color("BackgroundCell")

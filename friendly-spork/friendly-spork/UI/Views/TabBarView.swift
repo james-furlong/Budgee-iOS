@@ -50,7 +50,7 @@ struct TabBarView: View {
                                 .renderingMode(.template)
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 25.0, height: 25.0)
-                                .foregroundColor(selectedTab == item ? Theme.Color.teal : Theme.Color.navy)
+                                .foregroundColor(selectedTab == item ? Theme.Color.teal100 : Theme.Color.navy)
                                 .padding(10)
                                 .offset(x: -10, y: -5)
                         }

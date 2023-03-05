@@ -82,7 +82,7 @@ struct BudgetHistoryView: View {
                                                 }
                                             }
                                             .padding()
-                                            .background(Theme.Color.teal.opacity(0.2))
+                                            .background(Theme.Color.teal40)
                                             .cornerRadius(10)
                                         }
                                         .padding([.leading, .trailing], 10)

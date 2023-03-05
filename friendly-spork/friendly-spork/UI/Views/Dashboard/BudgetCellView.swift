@@ -50,7 +50,7 @@ struct BudgetCellView: View {
                     .padding()
             }
         }
-        .background(budget.isActive ? Theme.Color.teal : Theme.Color.teal.opacity(0.4))
+        .background(budget.isActive ? Theme.Color.teal100 : Theme.Color.teal40)
         .cornerRadius(20)
         .padding()
     }

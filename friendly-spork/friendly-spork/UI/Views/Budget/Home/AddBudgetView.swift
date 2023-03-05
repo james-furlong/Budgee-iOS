@@ -118,7 +118,7 @@ struct AddBudgetView: View {
                                 }
                             }
                             .datePickerStyle(.compact)
-                            .accentColor(Theme.Color.teal)
+                            .accentColor(Theme.Color.teal100)
                             .padding(.trailing, 10)
                         }
                         .background(Theme.Color.background)
@@ -135,7 +135,7 @@ struct AddBudgetView: View {
                             
                             Toggle("", isOn: $oneOff)
                                 .padding(.trailing, 20)
-                                .toggleStyle(SwitchToggleStyle(tint: Theme.Color.teal))
+                                .toggleStyle(SwitchToggleStyle(tint: Theme.Color.teal100))
                         }
                         .background(Theme.Color.background)
                         .cornerRadius(10)
@@ -161,7 +161,7 @@ struct AddBudgetView: View {
                                         .foregroundColor(Theme.Color.textHard)
                                 }
                                 .padding()
-                                .background(Theme.Color.teal)
+                                .background(Theme.Color.teal100)
                                 .cornerRadius(30)
                                 .padding(.bottom, 20)
                                 
@@ -181,7 +181,7 @@ struct AddBudgetView: View {
                             } label: {
                                 Image(systemName: "plus")
                                     .font(.system(size: 30))
-                                    .foregroundColor(Theme.Color.teal)
+                                    .foregroundColor(Theme.Color.teal100)
                             }
                             .padding(.trailing, 50)
                         }
@@ -239,7 +239,7 @@ struct AddBudgetView: View {
                             .foregroundColor(Theme.Color.textHard.opacity(buttonOpacity))
                             .padding([.leading, .trailing], 40)
                             .padding([.top, .bottom])
-                            .background(Theme.Color.teal.opacity(buttonOpacity))
+                            .background(buttonIsEnabled ? Theme.Color.teal100 : Theme.Color.teal20)
                             .clipShape(Capsule())
                     }
                     .disabled(!buttonIsEnabled)

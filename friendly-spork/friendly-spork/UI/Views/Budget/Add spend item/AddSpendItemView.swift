@@ -20,7 +20,7 @@ struct AddSpendItemView: View {
     }
     
     private var buttonColor: Color {
-        return buttonIsEnabled ? Theme.Color.teal : Theme.Color.teal.opacity(0.3)
+        return buttonIsEnabled ? Theme.Color.teal100 : Theme.Color.teal20
     }
     
     var body: some View {
@@ -55,7 +55,7 @@ struct AddSpendItemView: View {
                                 .foregroundColor(Theme.Color.text)
                                 .padding()
                         }
-                        .background(Theme.Color.teal.opacity(0.1))
+                        .background(Theme.Color.teal20)
                         .cornerRadius(10)
                         .padding([.leading, .trailing, .top], 20)
                         
@@ -66,7 +66,7 @@ struct AddSpendItemView: View {
                                 .keyboardType(.numberPad)
                                 .padding()
                         }
-                        .background(Theme.Color.teal.opacity(0.1))
+                        .background(Theme.Color.teal20)
                         .cornerRadius(10)
                         .padding([.leading, .trailing], 20)
                         
@@ -81,11 +81,11 @@ struct AddSpendItemView: View {
                                     }
                                 }
                                 .datePickerStyle(.compact)
-                                .accentColor(Theme.Color.teal)
+                                .accentColor(Theme.Color.teal100)
                             }
                             .padding(.trailing, 10)
                         }
-                        .background(Theme.Color.teal.opacity(0.1))
+                        .background(Theme.Color.teal20)
                         .cornerRadius(10)
                         .padding([.leading, .trailing], 20)
                         
@@ -115,7 +115,7 @@ struct AddSpendItemView: View {
                                             
                                             Image(systemName: item.id == itemId ? "circle.fill" : "circle")
                                                 .font(.system(size: 20))
-                                                .foregroundColor(Theme.Color.teal)
+                                                .foregroundColor(Theme.Color.teal100)
                                         }
                                     }
                                     .padding()

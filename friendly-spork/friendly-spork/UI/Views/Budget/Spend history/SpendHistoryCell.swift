@@ -47,7 +47,7 @@ struct SpendHistoryCell: View {
                                 .foregroundColor(Theme.Color.text)
                         }
                         .padding()
-                        .background(Theme.Color.teal.opacity(0.5))
+                        .background(Theme.Color.teal40)
                         .cornerRadius(15)
                     }
                 }
