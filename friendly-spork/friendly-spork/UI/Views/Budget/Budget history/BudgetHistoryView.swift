@@ -85,9 +85,6 @@ struct BudgetHistoryView: View {
                                             .background(Theme.Color.teal.opacity(0.2))
                                             .cornerRadius(10)
                                         }
-                                        .sheet(isPresented: $showingSheet) {
-                                            SpendHistoryView(budget: budget)
-                                        }
                                         .padding([.leading, .trailing], 10)
                                     }
                                     .padding(.vertical, 15)
@@ -101,6 +98,25 @@ struct BudgetHistoryView: View {
                     .cornerRadius(15, corners: [.topLeft, .topRight])
                 }
             }
+            
+            VStack {
+                if showingSheet {
+                    Color.black.opacity(0.2).ignoresSafeArea()
+                        .transition(.opacity)
+                }
+            }
+            .animation(.default, value: showingSheet)
+            
+            VStack {
+                if showingSheet {
+                    SpendHistoryView(budget: budget, isSheet: true) {
+                        self.showingSheet = false
+                    }
+                    .ignoresSafeArea(edges: .bottom)
+                    .transition(.move(edge: .bottom))
+                }
+            }
+            .animation(.default, value: showingSheet)
         }
     }
 }

@@ -21,7 +21,7 @@ struct TabBarView: View {
                 BudgetView(budget: budget)
                     .tag(TabBarItem.home)
                 
-                SpendHistoryView(budget: budget)
+                SpendHistoryView(budget: budget) {}
                     .tag(TabBarItem.spendHistory)
                 
                 AddSpendItemView(budget: budget) {}
@@ -70,16 +70,26 @@ struct TabBarView: View {
             .padding(.horizontal, 50)
             .padding(.vertical, 10)
             
-            if isShowingAddExpense {
-                Color.black.opacity(0.6).ignoresSafeArea()
-            }
-            
-            if isShowingAddExpense {
-                AddSpendItemView(budget: budget) {
-                    isShowingAddExpense = false
+            VStack {
+                if isShowingAddExpense {
+                    Color.black.opacity(0.6).ignoresSafeArea()
+                        .transition(.opacity)
+                        .onTapGesture {
+                            isShowingAddExpense = false
+                        }
                 }
-                .transition(.move(edge: .bottom))
             }
+            .animation(.default, value: isShowingAddExpense)
+            
+            VStack {
+                if isShowingAddExpense {
+                    AddSpendItemView(budget: budget) {
+                        isShowingAddExpense = false
+                    }
+                    .transition(.move(edge: .bottom))
+                }
+            }
+            .animation(.default, value: isShowingAddExpense)
         }
     }
 }

@@ -25,7 +25,6 @@ struct AddSpendItemView: View {
     
     var body: some View {
         ZStack {
-            Color.gray.opacity(0.5).ignoresSafeArea()
             VStack {
                 Spacer()
                 VStack(spacing: 10) {

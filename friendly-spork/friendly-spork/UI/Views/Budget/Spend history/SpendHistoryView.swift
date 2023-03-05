@@ -8,25 +8,39 @@
 import SwiftUI
 
 struct SpendHistoryView: View {
-    @Environment(\.dismiss) var dismiss
     @ObservedObject var budget: Budget
-    var showClose: Bool = false
+    @State var detailViewShowing: Bool = false
+    @State var transactionDetail: ExpenseItem?
+    
+    let isSheet: Bool
+    private let completion: () -> ()
+    
+    init(budget: Budget, isSheet: Bool = false, completion: @escaping () -> ()) {
+        self.budget = budget
+        self.isSheet = isSheet
+        self.completion = completion
+    }
+    
+    private func updateDetail(_ item: ExpenseItem) {
+        self.transactionDetail = item
+    }
     
     var body: some View {
         ZStack {
-            Theme.Color.background.ignoresSafeArea()
-            VStack {
-                Image("home-background")
-                    .resizable()
-                    .ignoresSafeArea()
-                    .frame(height: 250)
-                
-                Spacer()
+            if !isSheet {
+                VStack {
+                    Image("home-background")
+                        .resizable()
+                        .ignoresSafeArea()
+                        .frame(height: 250)
+                    
+                    Spacer()
+                }
             }
             
             VStack(spacing: 10) {
                 HStack {
-                    Text("Spend history")
+                    Text(!isSheet ? "Spend history" : "")
                         .font(.system(size: 40, weight: .heavy))
                         .foregroundColor(Theme.Color.textHard)
                         .padding(.leading, 20)
@@ -36,9 +50,25 @@ struct SpendHistoryView: View {
                 .padding(.top, 20)
                 
                 VStack {
+                    HStack {
+                        Spacer()
+                        
+                        Button {
+                            completion()
+                        } label: {
+                            Image(systemName: "chevron.down")
+                                .font(.system(size: 30))
+                                .foregroundColor(Theme.Color.text)
+                        }
+                        .padding([.trailing, .top])
+                    }
+                    
                     ScrollView {
                         ForEach(budget.currentInterval?.items ?? [], id: \.self) { item in
-                            SpendHistoryCell(budgetItem: item) { _ in }
+                            SpendHistoryCell(budgetItem: item) { item in
+                                updateDetail(item)
+                                
+                            }
                                 .padding(.bottom, -20)
                         }
                         .padding(.bottom, 10)
@@ -54,6 +84,6 @@ struct SpendHistoryView: View {
 
 struct SpendHistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        SpendHistoryView(budget: Theme.Constants.budget)
+        SpendHistoryView(budget: Theme.Constants.budget) { }
     }
 }
