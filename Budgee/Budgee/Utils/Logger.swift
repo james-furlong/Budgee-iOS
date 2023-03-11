@@ -5,7 +5,7 @@
 //  Created by James on 10/2/2023.
 //
 
-import UIKit
+import Foundation
 
 // Wrap the print() function within a DEBUG flag to ensure that any print statements are only called when
 // in DEBUG mode
