@@ -57,7 +57,7 @@
 		6007B5A429A18B4C003ACB60 /* lazyDog.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lazyDog.ttf; sourceTree = "<group>"; };
 		6007B5A629A1D75B003ACB60 /* RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
 		6007B5A929A1E04A003ACB60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		60412802298DF40800BE1143 /* friendly-spork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "friendly-spork.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		60412802298DF40800BE1143 /* Budgee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budgee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60412805298DF40800BE1143 /* friendly_sporkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = friendly_sporkApp.swift; sourceTree = "<group>"; };
 		60412807298DF40800BE1143 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		60412809298DF40900BE1143 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -158,7 +158,7 @@
 		604127F9298DF40800BE1143 = {
 			isa = PBXGroup;
 			children = (
-				60412804298DF40800BE1143 /* friendly-spork */,
+				60412804298DF40800BE1143 /* Budgee */,
 				60412803298DF40800BE1143 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -166,12 +166,12 @@
 		60412803298DF40800BE1143 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				60412802298DF40800BE1143 /* friendly-spork.app */,
+				60412802298DF40800BE1143 /* Budgee.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		60412804298DF40800BE1143 /* friendly-spork */ = {
+		60412804298DF40800BE1143 /* Budgee */ = {
 			isa = PBXGroup;
 			children = (
 				6007B5A929A1E04A003ACB60 /* Info.plist */,
@@ -184,7 +184,7 @@
 				6041280B298DF40900BE1143 /* friendly_spork.entitlements */,
 				6041280C298DF40900BE1143 /* Preview Content */,
 			);
-			path = "friendly-spork";
+			path = Budgee;
 			sourceTree = "<group>";
 		};
 		6041280C298DF40900BE1143 /* Preview Content */ = {
@@ -295,9 +295,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		60412801298DF40800BE1143 /* friendly-spork */ = {
+		60412801298DF40800BE1143 /* Budgee */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 60412811298DF40900BE1143 /* Build configuration list for PBXNativeTarget "friendly-spork" */;
+			buildConfigurationList = 60412811298DF40900BE1143 /* Build configuration list for PBXNativeTarget "Budgee" */;
 			buildPhases = (
 				604127FE298DF40800BE1143 /* Sources */,
 				604127FF298DF40800BE1143 /* Frameworks */,
@@ -307,9 +307,9 @@
 			);
 			dependencies = (
 			);
-			name = "friendly-spork";
+			name = Budgee;
 			productName = "friendly-spork";
-			productReference = 60412802298DF40800BE1143 /* friendly-spork.app */;
+			productReference = 60412802298DF40800BE1143 /* Budgee.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -327,7 +327,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 604127FD298DF40800BE1143 /* Build configuration list for PBXProject "friendly-spork" */;
+			buildConfigurationList = 604127FD298DF40800BE1143 /* Build configuration list for PBXProject "Budgee" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -340,7 +340,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				60412801298DF40800BE1143 /* friendly-spork */,
+				60412801298DF40800BE1143 /* Budgee */,
 			);
 		};
 /* End PBXProject section */
@@ -540,7 +540,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 12.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.jamesfurlong.friendly-spork";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Budgee;
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -579,7 +579,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 12.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.jamesfurlong.friendly-spork";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Budgee;
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -591,7 +591,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		604127FD298DF40800BE1143 /* Build configuration list for PBXProject "friendly-spork" */ = {
+		604127FD298DF40800BE1143 /* Build configuration list for PBXProject "Budgee" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6041280F298DF40900BE1143 /* Debug */,
@@ -600,7 +600,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		60412811298DF40900BE1143 /* Build configuration list for PBXNativeTarget "friendly-spork" */ = {
+		60412811298DF40900BE1143 /* Build configuration list for PBXNativeTarget "Budgee" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				60412812298DF40900BE1143 /* Debug */,
