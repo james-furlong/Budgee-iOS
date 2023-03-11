@@ -7,6 +7,16 @@
 
 import Foundation
 
+class BudgetWrapper: Codable, ObservableObject {
+    let id: String
+    var budgets: [Budget]
+    
+    init() {
+        self.id = UUID().uuidString
+        self.budgets = []
+    }
+}
+
 class Budget: Codable, ObservableObject {
     let id: String
     let name: String
@@ -54,6 +64,16 @@ class Budget: Codable, ObservableObject {
     }
     
     // MARK: - Functions
+    
+    public func addInterval() {
+        let nextStartDate: Date = Calendar.current.date(byAdding: .day, value: 1, to: currentInterval?.endDateTime ?? Date()) ?? Date()
+        let interval = BudgetInterval(
+            startDateTime: nextStartDate,
+            endDateTime: Calendar.current.date(byAdding: intervalType.component, value: intervalType.componentNum, to: nextStartDate) ?? Date(),
+            items: defaultItems.map { BudgetItem(from: $0) }
+        )
+        intervals.append(interval)
+    }
     
     public func addSpendItem(item: ExpenseItem, itemId: String) {
         let budgetItem: BudgetItem? = currentInterval?.items.first(where: { $0.id == itemId })

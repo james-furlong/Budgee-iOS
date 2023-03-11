@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct BudgetHistoryView: View {
-    let budget: Budget
+    @ObservedObject var budget: Budget
+    
     private var intervals: [BudgetInterval] {
         budget
             .intervals
@@ -41,7 +42,7 @@ struct BudgetHistoryView: View {
                     
                     Spacer()
                 }
-                .padding(.top, 100)
+                .padding(.top, 20)
                 
                 VStack {
                     ScrollView {
@@ -81,11 +82,8 @@ struct BudgetHistoryView: View {
                                                 }
                                             }
                                             .padding()
-                                            .background(Theme.Color.teal.opacity(0.2))
+                                            .background(Theme.Color.teal40)
                                             .cornerRadius(10)
-                                        }
-                                        .sheet(isPresented: $showingSheet) {
-                                            SpendHistoryView(budgetItems: interval.items, showClose: true)
                                         }
                                         .padding([.leading, .trailing], 10)
                                     }
@@ -100,81 +98,31 @@ struct BudgetHistoryView: View {
                     .cornerRadius(15, corners: [.topLeft, .topRight])
                 }
             }
+            
+            VStack {
+                if showingSheet {
+                    Color.black.opacity(0.2).ignoresSafeArea()
+                        .transition(.opacity)
+                }
+            }
+            .animation(.default, value: showingSheet)
+            
+            VStack {
+                if showingSheet {
+                    SpendHistoryView(budget: budget, isSheet: true) {
+                        self.showingSheet = false
+                    }
+                    .ignoresSafeArea(edges: .bottom)
+                    .transition(.move(edge: .bottom))
+                }
+            }
+            .animation(.default, value: showingSheet)
         }
     }
 }
 
 struct BudgetHistoryView_Previews: PreviewProvider {
-    static let budget = Budget(
-        id: "TestID",
-        name: "Test Budget",
-        intervalType: .monthly,
-        defaultItems: [
-            BudgetItem(
-                name: "Test Item",
-                maxValue: 100.00
-            )
-        ],
-        intervals: [
-            BudgetInterval(
-                startDateTime: Date(),
-                endDateTime: Calendar.current.date(byAdding: .month, value: 1, to: Date()) ?? Date(),
-                items: [
-                    BudgetItem(
-                        name: "Food",
-                        maxValue: 100.00,
-                        items: [
-                            ExpenseItem(name: "", amount: 45.0, date: Date())
-                        ]
-                    ),
-                    BudgetItem(
-                        name: "Entertainment",
-                        maxValue: 100.00,
-                        items: [
-                            ExpenseItem(name: "", amount: 91.0, date: Date())
-                        ]
-                    ),
-                    BudgetItem(
-                        name: "Fuel",
-                        maxValue: 100.00,
-                        items: [
-                            ExpenseItem(name: "", amount: 105.0, date: Date())
-                        ]
-                    )
-                ]
-            ),
-            BudgetInterval(
-                startDateTime: Date(),
-                endDateTime: Calendar.current.date(byAdding: .month, value: 1, to: Date()) ?? Date(),
-                items: [
-                    BudgetItem(
-                        name: "Food",
-                        maxValue: 100.00,
-                        items: [
-                            ExpenseItem(name: "", amount: 45.0, date: Date())
-                        ]
-                    ),
-                    BudgetItem(
-                        name: "Entertainment",
-                        maxValue: 100.00,
-                        items: [
-                            ExpenseItem(name: "", amount: 91.0, date: Date())
-                        ]
-                    ),
-                    BudgetItem(
-                        name: "Fuel",
-                        maxValue: 100.00,
-                        items: [
-                            ExpenseItem(name: "", amount: 105.0, date: Date())
-                        ]
-                    )
-                ]
-            )
-        ],
-        oneOff: true
-    )
-    
     static var previews: some View {
-        BudgetHistoryView(budget: budget)
+        BudgetHistoryView(budget: Theme.Constants.budget)
     }
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BudgetItemCellView: View {
-    @Binding var item: BudgetItem
+    let item: BudgetItem
     
     var body: some View {
         GeometryReader { geo in
@@ -73,6 +73,6 @@ struct BudgetItemCellView_Previews: PreviewProvider {
     )
     
     static var previews: some View {
-        BudgetItemCellView(item: self.$budgetItem)
+        BudgetItemCellView(item: self.budgetItem)
     }
 }

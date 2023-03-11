@@ -20,6 +20,20 @@ enum Interval: Codable, Hashable, Equatable {
         }
     }
     
+    var component: Calendar.Component {
+        switch self {
+            case .weekly, .fortnightly: return .weekOfYear
+            case .monthly: return .month
+        }
+    }
+    
+    var componentNum: Int {
+        switch self {
+            case .fortnightly: return 2
+            default: return 1
+        }
+    }
+    
     func endDate(from startDate: Date) -> Date {
         switch self {
             case .weekly: return Calendar.current.date(byAdding: .weekOfYear, value: 1, to: startDate) ?? Date()

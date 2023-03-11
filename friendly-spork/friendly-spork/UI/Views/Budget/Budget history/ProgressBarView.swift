@@ -20,7 +20,7 @@ struct ProgressBarView: View {
             return Theme.Color.orange
         }
         
-        return Theme.Color.teal
+        return Theme.Color.teal100
     }
     
     var body: some View {

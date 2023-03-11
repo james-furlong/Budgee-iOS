@@ -30,7 +30,6 @@ struct AddBudgetView: View {
     
     var body: some View {
         ZStack {
-            Theme.Color.background.ignoresSafeArea()
             VStack {
                 VStack {
                     VStack {
@@ -46,9 +45,10 @@ struct AddBudgetView: View {
                             Button {
                                 completion()
                             } label: {
-                                Image(systemName: "multiply")
+                                Image(systemName: "chevron.down")
                                     .font(.system(size: 35))
-                                    .foregroundColor(Theme.Color.red)
+                                    .foregroundColor(Theme.Color.text)
+                                    .padding()
                             }
                             .padding()
                         }
@@ -118,7 +118,7 @@ struct AddBudgetView: View {
                                 }
                             }
                             .datePickerStyle(.compact)
-                            .accentColor(Theme.Color.teal)
+                            .accentColor(Theme.Color.teal100)
                             .padding(.trailing, 10)
                         }
                         .background(Theme.Color.background)
@@ -135,7 +135,7 @@ struct AddBudgetView: View {
                             
                             Toggle("", isOn: $oneOff)
                                 .padding(.trailing, 20)
-                                .toggleStyle(SwitchToggleStyle(tint: Theme.Color.teal))
+                                .toggleStyle(SwitchToggleStyle(tint: Theme.Color.teal100))
                         }
                         .background(Theme.Color.background)
                         .cornerRadius(10)
@@ -145,46 +145,61 @@ struct AddBudgetView: View {
                     .cornerRadius(10)
                     .padding([.leading, .trailing])
                     
-                    HStack {
-                        Text("Categories")
-                        
-                        Spacer()
-                    }
-                    .padding([.leading, .top], 30)
-                    .padding(.bottom, -15)
-                    
-                    VStack(spacing: items.isEmpty ? 0 : 30) {
-                        VStack {
-                            ForEach(items, id: \.self) { item in
-                                ExpenseView(name: item.name, maximumAmount: item.maximumValue)
+                    if !items.isEmpty {
+                        VStack(spacing: 0) {
+                            HStack {
+                                Spacer()
+                                
+                                Button {
+                                    addItemViewIsShowing = true
+                                } label: {
+                                    Text("Add expense category")
+                                        .frame(height: 25)
+                                        .padding([.leading, .trailing], 40)
+                                        .font(.system(size: 20))
+                                        .bold()
+                                        .foregroundColor(Theme.Color.textHard)
+                                }
+                                .padding()
+                                .background(Theme.Color.teal100)
+                                .cornerRadius(30)
+                                .padding(.bottom, 20)
+                                
+                                Spacer()
                             }
                         }
-                        .padding(.top)
-                        
+                        .padding(.top, 30)
+                    }
+                    else {
                         HStack {
+                            Text("Categories")
+                            
                             Spacer()
                             
                             Button {
                                 addItemViewIsShowing = true
                             } label: {
-                                Text("Add expense category")
-                                    .frame(height: 25)
-                                    .padding([.leading, .trailing], 40)
-                                    .font(.system(size: 20))
-                                    .bold()
-                                    .foregroundColor(Theme.Color.textHard)
+                                Image(systemName: "plus")
+                                    .font(.system(size: 30))
+                                    .foregroundColor(Theme.Color.teal100)
                             }
-                            .padding()
-                            .background(Theme.Color.teal)
-                            .cornerRadius(30)
-                            .padding(.bottom, 20)
-                            
-                            Spacer()
+                            .padding(.trailing, 50)
                         }
+                        .padding([.leading, .top], 30)
+                        .padding(.bottom, -15)
+                        
+                        VStack(spacing: items.isEmpty ? 0 : 30) {
+                            VStack {
+                                ForEach(items, id: \.self) { item in
+                                    ExpenseView(name: item.name, maximumAmount: item.maximumValue)
+                                }
+                            }
+                            .padding(.top)
+                        }
+                        .background(Theme.Color.backgroundSupp)
+                        .cornerRadius(10)
+                        .padding()
                     }
-                    .background(Theme.Color.backgroundSupp)
-                    .cornerRadius(10)
-                    .padding()
                 }
                 
                 Spacer()
@@ -224,17 +239,23 @@ struct AddBudgetView: View {
                             .foregroundColor(Theme.Color.textHard.opacity(buttonOpacity))
                             .padding([.leading, .trailing], 40)
                             .padding([.top, .bottom])
-                            .background(Theme.Color.teal.opacity(buttonOpacity))
+                            .background(buttonIsEnabled ? Theme.Color.teal100 : Theme.Color.teal20)
                             .clipShape(Capsule())
                     }
                     .disabled(!buttonIsEnabled)
-                    
+                    .padding(.bottom, 50)
                 }
             }
             .ignoresSafeArea(.keyboard)
+            .background(Theme.Color.background)
+            .cornerRadius(15, corners: [.topRight, .topLeft])
             
             if addItemViewIsShowing {
                 Color(.black).opacity(0.4).ignoresSafeArea()
+                    .onTapGesture {
+                        addItemViewIsShowing = false
+                    }
+                
                 AddExpenseView { newItem in
                     items.append(newItem)
                     addItemViewIsShowing = false

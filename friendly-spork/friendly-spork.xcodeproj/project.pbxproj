@@ -15,7 +15,7 @@
 		6007B59D29A14F44003ACB60 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6007B59C29A14F44003ACB60 /* SettingsView.swift */; };
 		6007B59F29A14F99003ACB60 /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6007B59E29A14F99003ACB60 /* SettingsItem.swift */; };
 		6007B5A129A1659D003ACB60 /* privacyPolicy.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6007B5A029A1659D003ACB60 /* privacyPolicy.txt */; };
-		6007B5A329A165F5003ACB60 /* PrivacyPolicySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6007B5A229A165F5003ACB60 /* PrivacyPolicySheet.swift */; };
+		6007B5A329A165F5003ACB60 /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6007B5A229A165F5003ACB60 /* PrivacyPolicyView.swift */; };
 		6007B5A529A18B4C003ACB60 /* lazyDog.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6007B5A429A18B4C003ACB60 /* lazyDog.ttf */; };
 		6007B5A729A1D75B003ACB60 /* RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6007B5A629A1D75B003ACB60 /* RoundedCorners.swift */; };
 		60412806298DF40800BE1143 /* friendly_sporkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60412805298DF40800BE1143 /* friendly_sporkApp.swift */; };
@@ -53,7 +53,7 @@
 		6007B59C29A14F44003ACB60 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		6007B59E29A14F99003ACB60 /* SettingsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItem.swift; sourceTree = "<group>"; };
 		6007B5A029A1659D003ACB60 /* privacyPolicy.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = privacyPolicy.txt; sourceTree = "<group>"; };
-		6007B5A229A165F5003ACB60 /* PrivacyPolicySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicySheet.swift; sourceTree = "<group>"; };
+		6007B5A229A165F5003ACB60 /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
 		6007B5A429A18B4C003ACB60 /* lazyDog.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lazyDog.ttf; sourceTree = "<group>"; };
 		6007B5A629A1D75B003ACB60 /* RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
 		6007B5A929A1E04A003ACB60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -99,6 +99,7 @@
 		6007B589299EB16F003ACB60 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				60412846298E29BA00BE1143 /* AddBudgetView.swift */,
 				6066A07C2992467700640BE5 /* Add Expense */,
 				60412816298DFCA700BE1143 /* BudgetDashboardView.swift */,
 				6041285F2991A61000BE1143 /* BudgetCellView.swift */,
@@ -128,7 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				6007B59C29A14F44003ACB60 /* SettingsView.swift */,
-				6007B5A229A165F5003ACB60 /* PrivacyPolicySheet.swift */,
+				6007B5A229A165F5003ACB60 /* PrivacyPolicyView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -216,7 +217,6 @@
 		60412819298E052300BE1143 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				6041284A298FA15300BE1143 /* FileManager.swift */,
 				6041284C298FA32F00BE1143 /* Budget.swift */,
 				6041284E298FA3AA00BE1143 /* BudgetInterval.swift */,
 				60412850298FA3B300BE1143 /* BudgetItem.swift */,
@@ -228,7 +228,6 @@
 			isa = PBXGroup;
 			children = (
 				6041283F298E26F700BE1143 /* BudgetView.swift */,
-				60412846298E29BA00BE1143 /* AddBudgetView.swift */,
 				6066A0792992462E00640BE5 /* BudgetItemCellView.swift */,
 				60C1C8C529A35CB50044D07B /* BudgetCircleChart.swift */,
 				60C1C8C729A35EB50044D07B /* Arc.swift */,
@@ -260,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				6041285C2991003200BE1143 /* Extensions */,
+				6041284A298FA15300BE1143 /* FileManager.swift */,
 				60412856298FBB1000BE1143 /* Injector.swift */,
 				60985E19299618C100F00401 /* Logger.swift */,
 				6007B5A629A1D75B003ACB60 /* RoundedCorners.swift */,
@@ -376,7 +376,7 @@
 				6041285E2991004300BE1143 /* View+Extensions.swift in Sources */,
 				60C7915129A4BEDE008619DB /* ProgressBarView.swift in Sources */,
 				6041284B298FA15300BE1143 /* FileManager.swift in Sources */,
-				6007B5A329A165F5003ACB60 /* PrivacyPolicySheet.swift in Sources */,
+				6007B5A329A165F5003ACB60 /* PrivacyPolicyView.swift in Sources */,
 				60412808298DF40800BE1143 /* ContentView.swift in Sources */,
 				60412817298DFCA700BE1143 /* BudgetDashboardView.swift in Sources */,
 				6041284F298FA3AA00BE1143 /* BudgetInterval.swift in Sources */,
