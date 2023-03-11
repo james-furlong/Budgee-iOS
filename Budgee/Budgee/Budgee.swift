@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct friendly_sporkApp: App {
+struct Budgee: App {
     
     var body: some Scene {
         WindowGroup {
