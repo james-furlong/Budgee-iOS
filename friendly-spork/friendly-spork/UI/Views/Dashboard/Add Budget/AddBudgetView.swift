@@ -10,12 +10,18 @@ import SwiftUI
 struct AddBudgetView: View {
     let intervals: [Interval] = [.weekly, .fortnightly, .monthly]
     @State var name: String = ""
-    @State var items: [BudgetItem] = []
-    @State var interval: Interval = .weekly
+    @State var items: [BudgetItem] = [
+        BudgetItem(name: "Fuel", maxValue: 200, items: []),
+        BudgetItem(name: "Fuel", maxValue: 200, items: []),
+        BudgetItem(name: "Fuel", maxValue: 200, items: [])
+    ]
+    @State var selectedInterval: Interval = .weekly
     @State var startDate: Date = Date()
     @State var oneOff: Bool = false
     
+    // Transition states
     @State var addItemViewIsShowing: Bool = false
+    @State var selectIntervalIsShowing: Bool = false
     @State var errorIsShowing: Bool = false
     
     private var buttonIsEnabled: Bool {
@@ -73,14 +79,8 @@ struct AddBudgetView: View {
                         .cornerRadius(10)
                         .padding([.leading, .trailing, .top], 20)
                         
-                        Menu {
-                            Picker(selection: $interval) {
-                                ForEach(intervals, id: \.self) { interval in
-                                    Text(interval.name)
-                                        .font(.system(size: 40))
-                                        .foregroundColor(Theme.Color.text)
-                                }
-                            } label: { }
+                        Button {
+                            selectIntervalIsShowing = true
                         } label: {
                             HStack {
                                 Text("Select interval")
@@ -90,7 +90,7 @@ struct AddBudgetView: View {
                                 
                                 Spacer()
                                 
-                                if let name = interval.name {
+                                if let name = selectedInterval.name {
                                     Text(name)
                                         .font(.system(size: 20))
                                         .foregroundColor(Theme.Color.text)
@@ -145,7 +145,7 @@ struct AddBudgetView: View {
                     .cornerRadius(10)
                     .padding([.leading, .trailing])
                     
-                    if !items.isEmpty {
+                    if items.isEmpty {
                         VStack(spacing: 0) {
                             HStack {
                                 Spacer()
@@ -189,12 +189,12 @@ struct AddBudgetView: View {
                         .padding(.bottom, -15)
                         
                         VStack(spacing: items.isEmpty ? 0 : 30) {
-                            VStack {
-                                ForEach(items, id: \.self) { item in
-                                    ExpenseView(name: item.name, maximumAmount: item.maximumValue)
+                                ScrollView {
+                                    ForEach(items, id: \.self) { item in
+                                        ExpenseView(name: item.name, maximumAmount: item.maximumValue)
+                                    }
                                 }
-                            }
-                            .padding(.top)
+                                .padding([.top, .bottom])
                         }
                         .background(Theme.Color.backgroundSupp)
                         .cornerRadius(10)
@@ -208,14 +208,14 @@ struct AddBudgetView: View {
                     Button {
                         let initialInterval: BudgetInterval = BudgetInterval(
                             startDateTime: startDate,
-                            endDateTime: interval.endDate(from: startDate) ,
+                            endDateTime: selectedInterval.endDate(from: startDate) ,
                             items: items
                         )
                         
                         let budget = Budget(
                             id: UUID().uuidString,
                             name: name,
-                            intervalType: interval,
+                            intervalType: selectedInterval,
                             defaultItems: items,
                             intervals: [initialInterval],
                             oneOff: oneOff
@@ -250,18 +250,63 @@ struct AddBudgetView: View {
             .background(Theme.Color.background)
             .cornerRadius(15, corners: [.topRight, .topLeft])
             
-            if addItemViewIsShowing {
-                Color(.black).opacity(0.4).ignoresSafeArea()
-                    .onTapGesture {
+            ZStack {
+                if addItemViewIsShowing {
+                    Color(.black).opacity(0.4).ignoresSafeArea()
+                        .onTapGesture {
+                            addItemViewIsShowing = false
+                        }
+                    
+                    AddExpenseView { newItem in
+                        items.append(newItem)
                         addItemViewIsShowing = false
                     }
-                
-                AddExpenseView { newItem in
-                    items.append(newItem)
-                    addItemViewIsShowing = false
+                    .transition(.opacity)
                 }
-                .transition(.opacity)
             }
+            .animation(.default, value: addItemViewIsShowing)
+            
+            VStack {
+                if selectIntervalIsShowing {
+                    Spacer()
+                    
+                    ZStack {
+                        Color(.black).opacity(0.4).ignoresSafeArea()
+                            .onTapGesture {
+                                selectIntervalIsShowing = false
+                            }
+                        
+                        HStack {
+                            VStack(spacing: 0) {
+                                ForEach(Interval.allCases, id: \.self) { interval in
+                                    Button {
+                                        selectedInterval = interval
+                                        selectIntervalIsShowing = false
+                                    } label: {
+                                        HStack {
+                                            Spacer()
+                                            Text(interval.name)
+                                                .font(.system(size: 25))
+                                                .foregroundColor(Theme.Color.text)
+                                                .padding([.top, .bottom])
+                                            Spacer()
+                                        }
+                                    }
+                                    .background(Theme.Color.teal100)
+                                    .cornerRadius(15)
+                                    .padding(5)
+                                }
+                            }
+                            .padding()
+                        }
+                        .background(Theme.Color.backgroundSupp)
+                        .cornerRadius(15)
+                        .padding()
+                    }
+                    .transition(.opacity)
+                }
+            }
+            .animation(.default, value: selectIntervalIsShowing)
             
             if errorIsShowing {
                 VStack {

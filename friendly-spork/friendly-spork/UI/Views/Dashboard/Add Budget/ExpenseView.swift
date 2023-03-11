@@ -30,9 +30,9 @@ struct ExpenseView: View {
                 }
                 .cornerRadius(10)
             }
-            .padding(10)
+            .padding([.leading, .trailing], 10)
         }
-        .background(Theme.Color.orange)
+        .background(Theme.Color.teal70)
         .cornerRadius(20)
         .padding([.leading, .trailing])
     }

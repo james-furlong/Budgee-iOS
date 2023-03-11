@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Interval: Codable, Hashable, Equatable {
+enum Interval: Codable, Hashable, Equatable, CaseIterable {
     case weekly
     case fortnightly
     case monthly
