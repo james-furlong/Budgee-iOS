@@ -99,8 +99,7 @@
 		6007B589299EB16F003ACB60 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				60412846298E29BA00BE1143 /* AddBudgetView.swift */,
-				6066A07C2992467700640BE5 /* Add Expense */,
+				60B0BBF729BC2F2B00F87FE0 /* Add Budget */,
 				60412816298DFCA700BE1143 /* BudgetDashboardView.swift */,
 				6041285F2991A61000BE1143 /* BudgetCellView.swift */,
 			);
@@ -275,21 +274,22 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		6066A07C2992467700640BE5 /* Add Expense */ = {
-			isa = PBXGroup;
-			children = (
-				60412858299052AA00BE1143 /* AddExpenseView.swift */,
-				6041285A2990AD8100BE1143 /* ExpenseView.swift */,
-			);
-			path = "Add Expense";
-			sourceTree = "<group>";
-		};
 		6066A07D2992469600640BE5 /* Add spend item */ = {
 			isa = PBXGroup;
 			children = (
 				6066A0822992F8CF00640BE5 /* AddSpendItemView.swift */,
 			);
 			path = "Add spend item";
+			sourceTree = "<group>";
+		};
+		60B0BBF729BC2F2B00F87FE0 /* Add Budget */ = {
+			isa = PBXGroup;
+			children = (
+				60412846298E29BA00BE1143 /* AddBudgetView.swift */,
+				60412858299052AA00BE1143 /* AddExpenseView.swift */,
+				6041285A2990AD8100BE1143 /* ExpenseView.swift */,
+			);
+			path = "Add Budget";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
