@@ -28,14 +28,7 @@ struct SpendHistoryView: View {
     var body: some View {
         ZStack {
             if !isSheet {
-                VStack {
-                    Image("home-background")
-                        .resizable()
-                        .ignoresSafeArea()
-                        .frame(height: 250)
-                    
-                    Spacer()
-                }
+                BackgroundView()
             }
             
             VStack(spacing: 10) {

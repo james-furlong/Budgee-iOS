@@ -13,16 +13,7 @@ struct SettingsView: View {
     
     var body: some View {
         ZStack {
-            Theme.Color.background.ignoresSafeArea()
-            Theme.Color.background.ignoresSafeArea()
-            VStack {
-                Image("home-background")
-                    .resizable()
-                    .ignoresSafeArea()
-                    .frame(height: 250)
-                
-                Spacer()
-            }
+            BackgroundView()
             
             VStack(spacing: 10) {
                 HStack {
